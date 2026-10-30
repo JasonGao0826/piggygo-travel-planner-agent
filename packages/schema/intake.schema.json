@@ -1,0 +1,512 @@
+{
+  "$defs": {
+    "ExistingBooking": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "flight",
+            "accommodation",
+            "car",
+            "activity",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "File"
+        }
+      },
+      "required": [
+        "kind",
+        "description"
+      ],
+      "title": "ExistingBooking",
+      "type": "object"
+    },
+    "MemberIntake": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "passport_country": {
+          "title": "Passport Country",
+          "type": "string"
+        },
+        "visa": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Visa"
+        },
+        "can_drive": {
+          "default": false,
+          "title": "Can Drive",
+          "type": "boolean"
+        },
+        "age": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Age"
+        },
+        "licence_country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Licence Country"
+        },
+        "licence_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Licence Type"
+        },
+        "must_do": {
+          "items": {
+            "$ref": "#/$defs/MustDo"
+          },
+          "title": "Must Do",
+          "type": "array"
+        },
+        "wishlist": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Wishlist",
+          "type": "array"
+        },
+        "avoid": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Avoid",
+          "type": "array"
+        },
+        "thrill_level": {
+          "anyOf": [
+            {
+              "enum": [
+                "low",
+                "mid",
+                "high"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Thrill Level"
+        },
+        "weight_kg": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Weight Kg"
+        },
+        "diet": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Diet",
+          "type": "array"
+        },
+        "large_luggage": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Large Luggage"
+        },
+        "payment_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Payment Note"
+        }
+      },
+      "required": [
+        "name",
+        "passport_country"
+      ],
+      "title": "MemberIntake",
+      "type": "object"
+    },
+    "Money": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Amount"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "title": "Currency",
+          "type": "string"
+        },
+        "per": {
+          "default": "person",
+          "enum": [
+            "person",
+            "group",
+            "vehicle"
+          ],
+          "title": "Per",
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "title": "Money",
+      "type": "object"
+    },
+    "MustDo": {
+      "additionalProperties": false,
+      "description": "一个必玩项目和它的三个标记（设计规格 4.4 节）。",
+      "properties": {
+        "what": {
+          "title": "What",
+          "type": "string"
+        },
+        "activity_tag": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Activity Tag"
+        },
+        "place_hint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Place Hint"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date"
+        },
+        "fixed_activity": {
+          "default": true,
+          "title": "Fixed Activity",
+          "type": "boolean"
+        },
+        "fixed_place": {
+          "default": false,
+          "title": "Fixed Place",
+          "type": "boolean"
+        },
+        "fixed_date": {
+          "default": false,
+          "title": "Fixed Date",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "what"
+      ],
+      "title": "MustDo",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "destination": {
+      "title": "Destination",
+      "type": "string"
+    },
+    "regions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Regions",
+      "type": "array"
+    },
+    "start_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Start Date"
+    },
+    "end_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "End Date"
+    },
+    "month": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Month"
+    },
+    "days": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Days"
+    },
+    "origin_city": {
+      "title": "Origin City",
+      "type": "string"
+    },
+    "party": {
+      "default": "",
+      "title": "Party",
+      "type": "string"
+    },
+    "couples": {
+      "items": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Couples",
+      "type": "array"
+    },
+    "transport": {
+      "enum": [
+        "self_drive",
+        "public",
+        "tour",
+        "mixed"
+      ],
+      "title": "Transport",
+      "type": "string"
+    },
+    "budget_per_person": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Money"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "room_budget_per_night": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Money"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "settle_currency": {
+      "default": "AUD",
+      "title": "Settle Currency",
+      "type": "string"
+    },
+    "accommodation_type": {
+      "default": "any",
+      "enum": [
+        "whole_home",
+        "hotel",
+        "any"
+      ],
+      "title": "Accommodation Type",
+      "type": "string"
+    },
+    "room_requirements": {
+      "default": "",
+      "title": "Room Requirements",
+      "type": "string"
+    },
+    "need_parking": {
+      "default": false,
+      "title": "Need Parking",
+      "type": "boolean"
+    },
+    "max_daily_drive_hours": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Daily Drive Hours"
+    },
+    "earliest_start": {
+      "anyOf": [
+        {
+          "format": "time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Earliest Start"
+    },
+    "pace": {
+      "anyOf": [
+        {
+          "enum": [
+            "relaxed",
+            "balanced",
+            "packed"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pace"
+    },
+    "existing_bookings": {
+      "items": {
+        "$ref": "#/$defs/ExistingBooking"
+      },
+      "title": "Existing Bookings",
+      "type": "array"
+    },
+    "output_format": {
+      "default": "word",
+      "enum": [
+        "word",
+        "pdf"
+      ],
+      "title": "Output Format",
+      "type": "string"
+    },
+    "members": {
+      "items": {
+        "$ref": "#/$defs/MemberIntake"
+      },
+      "title": "Members",
+      "type": "array"
+    }
+  },
+  "required": [
+    "destination",
+    "origin_city",
+    "transport",
+    "members"
+  ],
+  "title": "TripIntake",
+  "type": "object"
+}

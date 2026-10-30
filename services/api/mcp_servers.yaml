@@ -1,0 +1,23 @@
+# 接入的外部 MCP 服务。只开放 allowed_tools 里列出的工具；需要 key 的写在 requires_env，缺了就自动不启用。
+# 第一次连接时会记下每个工具的指纹（data/mcp_pins.json），之后对方改了说明或参数会自动停用。
+
+servers:
+  - name: frankfurter
+    description: 汇率（各国央行每日参考价）
+    url: https://mcp.frankfurter.dev
+    allowed_tools: [convert, get_rates]
+    cache_ttl: 21600
+
+  - name: kiwi
+    description: 机票搜索（Kiwi.com 官方，只能搜不能订，结果带预订链接）
+    url: https://mcp.kiwi.com
+    allowed_tools: [search-flight]   # feedback-to-devs 会往外发送内容，不开放
+    cache_ttl: 1800
+    timeout: 60
+
+  - name: exa
+    description: 网页搜索（核实营业时间、封路等变化快的信息）
+    url: https://mcp.exa.ai/mcp
+    allowed_tools: [web_search_exa, web_fetch_exa]
+    cache_ttl: 3600
+    timeout: 60

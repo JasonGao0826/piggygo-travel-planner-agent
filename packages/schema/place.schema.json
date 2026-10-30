@@ -1,0 +1,468 @@
+{
+  "$defs": {
+    "BookingInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "lead_days": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lead Days"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "BookingInfo",
+      "type": "object"
+    },
+    "Money": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Amount"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "title": "Currency",
+          "type": "string"
+        },
+        "per": {
+          "default": "person",
+          "enum": [
+            "person",
+            "group",
+            "vehicle"
+          ],
+          "title": "Per",
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "title": "Money",
+      "type": "object"
+    },
+    "OpeningRule": {
+      "additionalProperties": false,
+      "description": "一条营业时间规则。from_md / to_md 是\"月-日\"，可以跨年（例如 11-01 到 03-31）。",
+      "properties": {
+        "season": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Season"
+        },
+        "from_md": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{2}-\\d{2}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From Md"
+        },
+        "to_md": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{2}-\\d{2}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Md"
+        },
+        "weekdays": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Weekdays",
+          "type": "array"
+        },
+        "open": {
+          "format": "time",
+          "title": "Open",
+          "type": "string"
+        },
+        "close": {
+          "format": "time",
+          "title": "Close",
+          "type": "string"
+        },
+        "last_entry": {
+          "anyOf": [
+            {
+              "format": "time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Entry"
+        }
+      },
+      "required": [
+        "open",
+        "close"
+      ],
+      "title": "OpeningRule",
+      "type": "object"
+    },
+    "PriceInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "money": {
+          "$ref": "#/$defs/Money"
+        }
+      },
+      "required": [
+        "label",
+        "money"
+      ],
+      "title": "PriceInfo",
+      "type": "object"
+    },
+    "Restriction": {
+      "additionalProperties": false,
+      "description": "参加限制。code 用于校验器判断（例如 max_weight_kg），text 用于报告展示。",
+      "properties": {
+        "code": {
+          "enum": [
+            "max_weight_kg",
+            "min_weight_kg",
+            "min_age",
+            "max_age",
+            "min_height_cm",
+            "id_document",
+            "no_photo",
+            "english_required",
+            "fitness",
+            "other"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "text"
+      ],
+      "title": "Restriction",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "name_zh": {
+      "title": "Name Zh",
+      "type": "string"
+    },
+    "name_en": {
+      "title": "Name En",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "activity",
+        "attraction",
+        "trailhead",
+        "viewpoint",
+        "town",
+        "restaurant",
+        "airport",
+        "accommodation",
+        "other"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "region": {
+      "title": "Region",
+      "type": "string"
+    },
+    "city": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "City"
+    },
+    "address": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Address"
+    },
+    "lat": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lat"
+    },
+    "lon": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lon"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "always_open": {
+      "default": false,
+      "title": "Always Open",
+      "type": "boolean"
+    },
+    "hours": {
+      "items": {
+        "$ref": "#/$defs/OpeningRule"
+      },
+      "title": "Hours",
+      "type": "array"
+    },
+    "booking": {
+      "$ref": "#/$defs/BookingInfo"
+    },
+    "prices": {
+      "items": {
+        "$ref": "#/$defs/PriceInfo"
+      },
+      "title": "Prices",
+      "type": "array"
+    },
+    "duration_min": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Duration Min"
+    },
+    "duration_max": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Duration Max"
+    },
+    "checkin_before_min": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Checkin Before Min"
+    },
+    "restrictions": {
+      "items": {
+        "$ref": "#/$defs/Restriction"
+      },
+      "title": "Restrictions",
+      "type": "array"
+    },
+    "weather_dependent": {
+      "default": false,
+      "title": "Weather Dependent",
+      "type": "boolean"
+    },
+    "official_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Official Url"
+    },
+    "guide_links": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Guide Links",
+      "type": "array"
+    },
+    "intro": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Intro"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "data_notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Data Notes",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "verified_at": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Verified At"
+    }
+  },
+  "required": [
+    "id",
+    "name_zh",
+    "name_en",
+    "kind",
+    "region"
+  ],
+  "title": "Place",
+  "type": "object"
+}

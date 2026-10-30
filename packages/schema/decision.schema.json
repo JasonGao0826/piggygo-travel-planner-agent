@@ -1,0 +1,274 @@
+{
+  "$defs": {
+    "DecisionKind": {
+      "enum": [
+        "hard_constraint",
+        "preference",
+        "decision",
+        "rejection"
+      ],
+      "title": "DecisionKind",
+      "type": "string"
+    },
+    "DecisionStatus": {
+      "enum": [
+        "active",
+        "superseded",
+        "withdrawn"
+      ],
+      "title": "DecisionStatus",
+      "type": "string"
+    },
+    "Priority": {
+      "enum": [
+        "must",
+        "high",
+        "normal",
+        "low"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "RejectedOption": {
+      "additionalProperties": false,
+      "description": "被否决的方案。place_id 或\"项目类型 + 地方\"任一匹配就算命中。",
+      "properties": {
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "place_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Place Id"
+        },
+        "activity_tag": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Activity Tag"
+        },
+        "city": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "City"
+        }
+      },
+      "required": [
+        "description"
+      ],
+      "title": "RejectedOption",
+      "type": "object"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "description": "必玩项目的三个标记（设计规格 4.4 节）：填了哪项，哪项就不能换。",
+      "properties": {
+        "activity_tag": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Activity Tag"
+        },
+        "place_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Place Id"
+        },
+        "city": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "City"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date"
+        }
+      },
+      "title": "Requirement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "content": {
+      "title": "Content",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/DecisionKind"
+    },
+    "priority": {
+      "$ref": "#/$defs/Priority",
+      "default": "normal"
+    },
+    "scope": {
+      "default": "trip",
+      "enum": [
+        "trip",
+        "day",
+        "item",
+        "member"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "refs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Refs",
+      "type": "array"
+    },
+    "proposed_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Proposed By"
+    },
+    "agreed_by": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Agreed By",
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/$defs/DecisionStatus",
+      "default": "active"
+    },
+    "supersedes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Supersedes"
+    },
+    "rationale": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rationale"
+    },
+    "requirement": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Requirement"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "rejected_options": {
+      "items": {
+        "$ref": "#/$defs/RejectedOption"
+      },
+      "title": "Rejected Options",
+      "type": "array"
+    },
+    "source_message_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Message Id"
+    },
+    "created_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Created At"
+    }
+  },
+  "required": [
+    "id",
+    "content",
+    "kind"
+  ],
+  "title": "Decision",
+  "type": "object"
+}

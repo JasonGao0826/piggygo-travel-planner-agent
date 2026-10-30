@@ -1,0 +1,256 @@
+# 新西兰 10 天 9 晚示例行程（成员、民宿和房东都是虚构的；景点、航班、车程按真实情况）。
+# 这是校验器和回放测试的标准用例。时间只写 HH:MM 的，按当天日期和新西兰时区（NZDT）补全。
+# 原资料没写清楚、做了假设的地方见下面的 assumptions。
+
+assumptions:
+  - 鲨鱼艇两组：第一组 12:10 为 Tony、天哥；第二组 13:50 为 Nina、Leo
+  - 南岛租车 11/29 早上在基督城机场还车（原资料写"11/28 或 29"）
+  - 11/29 北岛各点的具体时间按车程推算（V8 只有路线，没有逐小时安排）
+  - 每段由谁开车是按两位司机轮换排的
+
+meta:
+  id: nz_2026
+  title: 新西兰南北岛自驾 10 天 9 晚
+  destination: NZ
+  start_date: 2026-11-23
+  end_date: 2026-12-02
+  origin_city: Melbourne
+  home_timezone: Australia/Melbourne
+  local_timezone: Pacific/Auckland
+  local_currency: NZD
+  settle_currency: AUD
+  prefs: {max_daily_drive_hours: 6.5, earliest_departure: "04:30"}
+
+custom_places:  # 订好的民宿只属于这个行程，不放进公共知识库；坐标为近似位置
+  - {id: acc_queenstown_jacks_point, name_zh: 皇后镇 Jack's Point 湖景屋, name_en: "Jack's Point Lake House", kind: accommodation, region: 南岛, city: Queenstown, address: "1 Example Road, Jacks Point", lat: -45.07, lon: 168.74, always_open: true}
+  - {id: acc_twizel_house, name_zh: 特威泽尔山景度假屋, name_en: Twizel holiday home, kind: accommodation, region: 南岛, city: Twizel, address: "2 Example Road, Twizel", lat: -44.26, lon: 170.10, always_open: true}
+  - {id: acc_christchurch_house, name_zh: 基督城三卧室家庭住宅, name_en: Christchurch 3-bedroom house, kind: accommodation, region: 南岛, city: Christchurch, lat: -43.5400, lon: 172.6500, always_open: true, notes: [门牌号待确认]}
+  - {id: acc_rotorua_inn, name_zh: 罗托鲁瓦湖畔旅馆, name_en: Lakeside Inn, kind: accommodation, region: 北岛, city: Rotorua, address: "3 Example Road, Rotorua", lat: -38.1250, lon: 176.2300, always_open: true}
+  - {id: acc_auckland_flat_bush, name_zh: 奥克兰 Flat Bush 三卧室民宿, name_en: Flat Bush 3-bedroom home, kind: accommodation, region: 北岛, city: Auckland, address: "4 Example Road, Flat Bush, Auckland", lat: -36.9700, lon: 174.9100, always_open: true}
+
+members:
+  - {id: m_nina, name: Nina, role: owner, passport_country: CN, visa: 澳洲 500 学生签}
+  - {id: m_leo, name: Leo, passport_country: CN, visa: 澳洲 500 学生签, can_drive: true, age: 26, licence_country: AU, licence_type: full}
+  - {id: m_tony, name: Tony, passport_country: CN, visa: 澳洲 500 学生签, can_drive: true, age: 24, licence_country: CN, licence_type: full}
+  - {id: m_tiange, name: 天哥, passport_country: CN, visa: 澳洲 500 学生签}
+
+segments:
+  - {id: seg_south, name: 南岛自驾, transport: self_drive, start_date: 2026-11-23, end_date: 2026-11-29, vehicle_id: car_south}
+  - {id: seg_north, name: 北岛自驾, transport: self_drive, start_date: 2026-11-29, end_date: 2026-12-02, vehicle_id: car_north}
+
+vehicles:
+  - id: car_south
+    model: 大型 5 座或 7 座 SUV（4 人 + 4 个大箱）
+    pickup_place_id: nz_zqn_airport
+    pickup_time: "2026-11-23T12:30:00+13:00"
+    dropoff_place_id: nz_chc_airport
+    dropoff_time: "2026-11-29T05:25:00+13:00"
+    drivers: [m_leo, m_tony]
+    booking_status: to_book
+    notes: [推荐：GO Rentals、Apex、Ezi（皇后镇机场）, 确认全险、自付额、押金、异地还车费、第二驾驶员费用]
+  - id: car_north
+    model: 大型 SUV
+    pickup_place_id: nz_hlz_airport
+    pickup_time: "2026-11-29T09:00:00+13:00"
+    dropoff_place_id: nz_akl_airport
+    dropoff_time: "2026-12-02T16:00:00+13:00"
+    drivers: [m_leo, m_tony]
+    booking_status: to_book
+
+accommodations:
+  - {id: acc_queenstown, name: "Jack's Point 湖景屋", city: 皇后镇, place_id: acc_queenstown_jacks_point, address: "1 Example Road, Jacks Point", check_in: 2026-11-23, check_out: 2026-11-27, earliest_checkin: "16:00", latest_checkout: "10:00", host: Olivia, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_acc_queenstown], source: evidence}
+  - {id: acc_twizel, name: 山景度假屋, city: 特威泽尔, place_id: acc_twizel_house, address: "2 Example Road, Twizel", check_in: 2026-11-27, check_out: 2026-11-28, earliest_checkin: "15:00", latest_checkout: "10:00", booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_acc_twizel], source: evidence}
+  - {id: acc_christchurch, name: 三卧室家庭住宅, city: 基督城, place_id: acc_christchurch_house, check_in: 2026-11-28, check_out: 2026-11-29, rooms: 3 卧室 4 张床 1 卫，免费停车, host: Tom, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_acc_christchurch], source: evidence, notes: [门牌号待确认（市中心东边）, 密码钥匙盒自助入住]}
+  - {id: acc_rotorua, name: Lakeside Inn, city: 罗托鲁瓦, place_id: acc_rotorua_inn, address: "3 Example Road, Rotorua", check_in: 2026-11-29, check_out: 2026-12-01, earliest_checkin: "15:00", latest_checkout: "10:00", host: 旅馆前台, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_acc_rotorua], source: evidence}
+  - {id: acc_auckland, name: Flat Bush 三卧室民宿, city: 奥克兰, place_id: acc_auckland_flat_bush, address: "4 Example Road, Flat Bush, Auckland", check_in: 2026-12-01, check_out: 2026-12-02, earliest_checkin: "15:00", latest_checkout: "10:00", host: Grace, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_acc_auckland], source: evidence}
+
+todos:
+  - {id: todo_nzeta, title: 四人分别申请 NZeTA 并缴纳 IVL 旅游税, kind: visa, due: 2026-11-01}
+  - {id: todo_visa_check, title: 检查护照、澳洲 500 签证及返澳资格, kind: visa, due: 2026-11-01}
+  - {id: todo_licence_tony, title: 办理中国驾照的认可英文翻译件, kind: licence_translation, owner_ids: [m_tony], due: 2026-11-10}
+  - {id: todo_nztd, title: 出发前填写 NZTD 新西兰入境申报, kind: visa, due: 2026-11-22}
+  - {id: todo_bank_card, title: 确认银行卡的境外手续费, kind: payment, owner_ids: [m_nina], due: 2026-11-15}
+  - {id: todo_book_car_south, title: 订南岛租车（皇后镇机场取车 → 基督城机场还车）, kind: booking, item_ids: [car_south], due: 2026-11-05}
+  - {id: todo_book_car_north, title: 订北岛租车（汉密尔顿机场取车 → 奥克兰机场还车）, kind: booking, item_ids: [car_north], due: 2026-11-05}
+  - {id: todo_book_skyline, title: 预约 Skyline 缆车＋Luge, kind: booking, item_ids: [d1_skyline], due: 2026-11-20}
+  - {id: todo_book_deer_park, title: 预约小鹿公园, kind: booking, item_ids: [d2_deer_park], due: 2026-11-17, notes: [提前 7 天开放预约（11/17）, 需要租车车牌号]}
+  - {id: todo_book_rafting, title: 预约 Kaituna 白水漂流 08:30 场, kind: booking, item_ids: [d8_rafting], due: 2026-11-10}
+  - {id: todo_book_waiotapu, title: 购买 Wai-O-Tapu 门票, kind: booking, item_ids: [d8_waiotapu], due: 2026-11-20}
+  - {id: todo_book_hobbiton, title: 预约霍比屯 09:10 左右场次, kind: booking, item_ids: [d9_hobbiton], due: 2026-10-31, notes: [位置紧张，尽快订]}
+  - {id: todo_chc_address, title: 向房东确认基督城民宿门牌号和自助入住方式, kind: confirm, due: 2026-11-20}
+
+days:
+  # ---------------- D1 11/23 墨尔本 ✈ 皇后镇 ----------------
+  - date: 2026-11-23
+    segment_id: seg_south
+    night_city: 皇后镇
+    route: 墨尔本 ✈ 皇后镇 → Jack's Point
+    items:
+      - {id: d1_flight_qf177, type: flight, title: "QF177 墨尔本 → 皇后镇", from_place_id: au_mel_airport, to_place_id: nz_zqn_airport, start: "2026-11-23T06:40:00+11:00", end: "11:45", flight: {number: QF177, international: true}, checkin_before_min: 180, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_flight_qf177], source: evidence}
+      - {id: d1_arrival, type: buffer, title: 入境检查、领取行李, place_id: nz_zqn_airport, start: "11:45", end: "12:30"}
+      - {id: d1_car_pickup, type: car_pickup, title: 皇后镇机场取车, place_id: nz_zqn_airport, vehicle_id: car_south, start: "12:30", end: "13:15"}
+      - {id: d1_drive_town, type: drive, title: 机场 → 皇后镇市区, from_place_id: nz_zqn_airport, to_place_id: nz_queenstown_town_centre, driver_id: m_leo, vehicle_id: car_south, start: "13:15", end: "13:40"}
+      - {id: d1_lunch, type: meal, title: 午餐, place_id: nz_queenstown_town_centre, start: "13:40", end: "14:40"}
+      - {id: d1_town, type: free_time, title: 皇后镇市区、瓦卡蒂普湖、Queenstown Gardens, place_id: nz_queenstown_town_centre, start: "14:40", end: "16:00"}
+      - {id: d1_skyline, type: activity, title: Skyline 天空缆车＋Luge, place_id: nz_skyline_queenstown, start: "16:30", end: "18:30", booking_status: to_book, source: knowledge_base, cost: {amount: 99, currency: NZD}}
+      - {id: d1_dinner, type: meal, title: 晚餐, place_id: nz_queenstown_town_centre, start: "18:50", end: "19:50"}
+      - {id: d1_drive_home, type: drive, title: 市区 → Jack's Point 民宿, from_place_id: nz_queenstown_town_centre, to_place_id: acc_queenstown_jacks_point, driver_id: m_tony, vehicle_id: car_south, start: "20:00", end: "20:30"}
+      - {id: d1_checkin, type: checkin, title: 入住 Jack's Point 湖景屋, place_id: acc_queenstown_jacks_point, accommodation_id: acc_queenstown, start: "20:30", end: "20:45"}
+
+  # ---------------- D2 11/24 滑翔伞 + 鲨鱼艇 + 小鹿公园 ----------------
+  - date: 2026-11-24
+    segment_id: seg_south
+    night_city: 皇后镇
+    route: Jack's Point → Coronet Peak → 皇后镇 → Deer Park → Jack's Point
+    items:
+      - {id: d2_drive_coronet, type: drive, title: 前往 Coronet Peak 滑翔伞集合点, from_place_id: acc_queenstown_jacks_point, to_place_id: nz_skytrek_paragliding, driver_id: m_tony, vehicle_id: car_south, start: "07:25", end: "08:20", notes: [自驾集合点 Carpark 4, Coronet Peak Road]}
+      - {id: d2_drive_down, type: drive, title: Tony 开车下山回皇后镇, from_place_id: nz_skytrek_paragliding, to_place_id: nz_queenstown_town_centre, participants: [m_tony, m_tiange], driver_id: m_tony, vehicle_id: car_south, start: "08:25", end: "09:00"}
+      - {id: d2_skytrek, type: activity, title: Skytrek 双人滑翔伞, place_id: nz_skytrek_paragliding, participants: [m_nina, m_leo], start: "09:00", end: "10:30", checkin_before_min: 30, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_skytrek], source: evidence, weather_dependent: true, backup: 如因风速取消，联系商家改到 11/26 傍晚或其他空档, cost: {amount: 369, currency: NZD}}
+      - {id: d2_free_town, type: free_time, title: 皇后镇湖边自由活动, place_id: nz_queenstown_town_centre, participants: [m_tony, m_tiange], start: "09:00", end: "11:15"}
+      - {id: d2_skytrek_shuttle, type: transfer, title: 商家接驳回皇后镇, from_place_id: nz_skytrek_paragliding, to_place_id: nz_queenstown_town_centre, participants: [m_nina, m_leo], start: "10:30", end: "11:15"}
+      - {id: d2_regroup, type: buffer, title: 湖边汇合、休息, place_id: nz_queenstown_town_centre, start: "11:15", end: "11:45"}
+      - {id: d2_hydro_1, type: activity, title: Hydro Attack 鲨鱼艇（第一组）, place_id: nz_hydro_attack, participants: [m_tony, m_tiange], start: "12:10", end: "12:35", checkin_before_min: 15, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_hydro_1], source: evidence}
+      - {id: d2_lunch, type: meal, title: 午餐, place_id: nz_queenstown_town_centre, start: "12:45", end: "13:25"}
+      - {id: d2_hydro_2, type: activity, title: Hydro Attack 鲨鱼艇（第二组）, place_id: nz_hydro_attack, participants: [m_nina, m_leo], start: "13:50", end: "14:15", checkin_before_min: 15, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_hydro_2], source: evidence}
+      - {id: d2_drive_deer, type: drive, title: 前往小鹿公园, from_place_id: nz_queenstown_town_centre, to_place_id: nz_deer_park_heights, driver_id: m_leo, vehicle_id: car_south, start: "14:45", end: "15:10"}
+      - {id: d2_deer_park, type: activity, title: 小鹿公园 Deer Park Heights, place_id: nz_deer_park_heights, start: "15:15", end: "17:30", booking_status: to_book, source: knowledge_base, cost: {amount: 75, currency: NZD, per: vehicle}}
+      - {id: d2_drive_home, type: drive, title: 返回 Jack's Point, from_place_id: nz_deer_park_heights, to_place_id: acc_queenstown_jacks_point, driver_id: m_leo, vehicle_id: car_south, start: "17:30", end: "18:00"}
+      - {id: d2_dinner, type: meal, title: 晚餐（民宿做饭）, place_id: acc_queenstown_jacks_point, start: "18:30", end: "19:30"}
+
+  # ---------------- D3 11/25 米尔福德峡湾自驾 ----------------
+  - date: 2026-11-25
+    segment_id: seg_south
+    night_city: 皇后镇
+    route: Jack's Point ⇄ 米尔福德峡湾（经 Te Anau）
+    items:
+      - {id: d3_drive_te_anau, type: drive, title: Jack's Point → Te Anau, from_place_id: acc_queenstown_jacks_point, to_place_id: nz_te_anau_town, driver_id: m_leo, vehicle_id: car_south, start: "06:30", end: "08:30", notes: [出发前检查 SH94 路况]}
+      - {id: d3_te_anau_stop, type: buffer, title: Te Anau 加油、上厕所、司机休息, place_id: nz_te_anau_town, start: "08:30", end: "08:50", notes: [Te Anau 之后没有正常加油站，务必加满油]}
+      - {id: d3_drive_mirror, type: drive, title: Te Anau → 镜湖, from_place_id: nz_te_anau_town, to_place_id: nz_mirror_lakes, driver_id: m_tony, vehicle_id: car_south, start: "08:50", end: "09:40"}
+      - {id: d3_mirror_lakes, type: activity, title: 镜湖短暂停留, place_id: nz_mirror_lakes, start: "09:40", end: "10:00"}
+      - {id: d3_drive_milford, type: drive, title: 镜湖 → 米尔福德峡湾（经 Homer Tunnel）, from_place_id: nz_mirror_lakes, to_place_id: nz_milford_sound_terminal, driver_id: m_tony, vehicle_id: car_south, start: "10:00", end: "11:50"}
+      - {id: d3_lunch, type: meal, title: 午餐（自带）, place_id: nz_milford_sound_terminal, start: "11:50", end: "12:40"}
+      - {id: d3_cruise, type: activity, title: RealNZ 米尔福德峡湾游船, place_id: nz_milford_sound_terminal, start: "13:15", end: "14:55", checkin_before_min: 20, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_milford], source: evidence}
+      - {id: d3_drive_back_1, type: drive, title: 米尔福德 → Te Anau, from_place_id: nz_milford_sound_terminal, to_place_id: nz_te_anau_town, driver_id: m_leo, vehicle_id: car_south, start: "15:15", end: "17:30"}
+      - {id: d3_dinner, type: meal, title: Te Anau 晚餐、司机休息, place_id: nz_te_anau_town, start: "17:30", end: "18:15"}
+      - {id: d3_drive_back_2, type: drive, title: Te Anau → Jack's Point, from_place_id: nz_te_anau_town, to_place_id: acc_queenstown_jacks_point, driver_id: m_tony, vehicle_id: car_south, start: "18:15", end: "20:30"}
+
+  # ---------------- D4 11/26 实弹射击 + 瓦纳卡 ----------------
+  - date: 2026-11-26
+    segment_id: seg_south
+    night_city: 皇后镇
+    route: Jack's Point → Cardrona → 瓦纳卡 → Jack's Point
+    items:
+      - {id: d4_drive_cardrona, type: drive, title: 前往 Cardrona（经 Crown Range）, from_place_id: acc_queenstown_jacks_point, to_place_id: nz_real_guns, driver_id: m_leo, vehicle_id: car_south, start: "09:30", end: "11:00"}
+      - {id: d4_real_guns, type: activity, title: Real Guns 实弹射击, place_id: nz_real_guns, start: "12:00", end: "13:30", checkin_before_min: 15, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_realguns], source: evidence, notes: [带护照原件和预订用的实体信用卡]}
+      - {id: d4_drive_wanaka, type: drive, title: Cardrona → 瓦纳卡, from_place_id: nz_real_guns, to_place_id: nz_wanaka_town, driver_id: m_tony, vehicle_id: car_south, start: "13:30", end: "14:00"}
+      - {id: d4_lunch, type: meal, title: 瓦纳卡午餐, place_id: nz_wanaka_town, start: "14:00", end: "15:00"}
+      - {id: d4_drive_tree, type: drive, title: 前往孤独树停车场, from_place_id: nz_wanaka_town, to_place_id: nz_wanaka_tree, driver_id: m_tony, vehicle_id: car_south, start: "15:00", end: "15:10"}
+      - {id: d4_wanaka_tree, type: activity, title: 瓦纳卡孤独树、瓦纳卡湖, place_id: nz_wanaka_tree, start: "15:15", end: "16:00"}
+      - {id: d4_drive_home, type: drive, title: 返回 Jack's Point, from_place_id: nz_wanaka_tree, to_place_id: acc_queenstown_jacks_point, driver_id: m_leo, vehicle_id: car_south, start: "16:00", end: "17:45"}
+      - {id: d4_dinner, type: meal, title: 晚餐、收拾行李, place_id: acc_queenstown_jacks_point, start: "18:30", end: "19:30"}
+
+  # ---------------- D5 11/27 格林诺奇骑马 → 特威泽尔 ----------------
+  - date: 2026-11-27
+    segment_id: seg_south
+    night_city: 特威泽尔
+    route: Jack's Point → 格林诺奇 → 特威泽尔
+    items:
+      - {id: d5_checkout, type: checkout, title: 皇后镇民宿退房, place_id: acc_queenstown_jacks_point, accommodation_id: acc_queenstown, start: "06:45", end: "07:00"}
+      - {id: d5_drive_glenorchy, type: drive, title: 前往格林诺奇, from_place_id: acc_queenstown_jacks_point, to_place_id: nz_lighthorse_glenorchy, driver_id: m_leo, vehicle_id: car_south, start: "07:00", end: "08:25"}
+      - {id: d5_riding, type: activity, title: Lighthorse Easy Rider 骑马, place_id: nz_lighthorse_glenorchy, start: "09:00", end: "10:30", checkin_before_min: 30, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_lighthorse], source: evidence, cost: {amount: 249, currency: NZD}}
+      - {id: d5_drive_wharf, type: drive, title: 前往格林诺奇码头, from_place_id: nz_lighthorse_glenorchy, to_place_id: nz_glenorchy_wharf, driver_id: m_leo, vehicle_id: car_south, start: "10:50", end: "11:00"}
+      - {id: d5_red_shed, type: activity, title: 格林诺奇红房子、码头拍照, place_id: nz_glenorchy_wharf, start: "11:00", end: "11:40"}
+      - {id: d5_lunch, type: meal, title: 午餐、买路餐, place_id: nz_glenorchy_wharf, start: "11:40", end: "12:10"}
+      - {id: d5_drive_cromwell, type: drive, title: 格林诺奇 → Cromwell, from_place_id: nz_glenorchy_wharf, to_place_id: nz_cromwell_town, driver_id: m_tony, vehicle_id: car_south, start: "12:10", end: "14:10"}
+      - {id: d5_rest_cromwell, type: buffer, title: Cromwell 休息、加油, place_id: nz_cromwell_town, start: "14:10", end: "14:40"}
+      - {id: d5_drive_twizel, type: drive, title: Cromwell → 特威泽尔（经 Lindis Pass、Omarama）, from_place_id: nz_cromwell_town, to_place_id: acc_twizel_house, driver_id: m_leo, vehicle_id: car_south, start: "14:40", end: "17:15"}
+      - {id: d5_checkin, type: checkin, title: 入住 山景度假屋, place_id: acc_twizel_house, accommodation_id: acc_twizel, start: "17:30", end: "17:45"}
+      - {id: d5_dinner, type: meal, title: 晚餐、准备徒步装备, place_id: acc_twizel_house, start: "18:30", end: "19:30"}
+
+  # ---------------- D6 11/28 胡克谷 → 蒂卡波 → 基督城 ----------------
+  - date: 2026-11-28
+    segment_id: seg_south
+    night_city: 基督城
+    route: 特威泽尔 → 库克山 → 普卡基湖 → 蒂卡波 → 基督城
+    items:
+      - {id: d6_checkout, type: checkout, title: 特威泽尔退房, place_id: acc_twizel_house, accommodation_id: acc_twizel, start: "06:55", end: "07:10"}
+      - {id: d6_drive_mtcook, type: drive, title: 特威泽尔 → White Horse Hill 停车场, from_place_id: acc_twizel_house, to_place_id: nz_hooker_valley_track, driver_id: m_leo, vehicle_id: car_south, start: "07:10", end: "08:20"}
+      - {id: d6_hooker, type: activity, title: 胡克谷步道（往返约 10 公里）, place_id: nz_hooker_valley_track, start: "08:20", end: "12:30", weather_dependent: true, backup: 大风或下雨时改走较短的 Kea Point 步道，或直接去普卡基湖, notes: [停车场 NZ$2.50/半小时，NZ$25/天]}
+      - {id: d6_lunch, type: meal, title: 更衣、简餐, place_id: nz_hooker_valley_track, start: "12:30", end: "13:00"}
+      - {id: d6_drive_salmon, type: drive, title: 前往普卡基湖南端, from_place_id: nz_hooker_valley_track, to_place_id: nz_alpine_salmon_pukaki, driver_id: m_tony, vehicle_id: car_south, start: "13:00", end: "13:55"}
+      - {id: d6_salmon, type: activity, title: 高山三文鱼、普卡基湖拍照, place_id: nz_alpine_salmon_pukaki, start: "13:55", end: "14:20"}
+      - {id: d6_drive_tekapo, type: drive, title: 前往蒂卡波, from_place_id: nz_alpine_salmon_pukaki, to_place_id: nz_church_good_shepherd, driver_id: m_tony, vehicle_id: car_south, start: "14:20", end: "15:05"}
+      - {id: d6_church, type: activity, title: 好牧羊人教堂、蒂卡波湖, place_id: nz_church_good_shepherd, start: "15:05", end: "15:25"}
+      - {id: d6_drive_chc, type: drive, title: 蒂卡波 → 基督城, from_place_id: nz_church_good_shepherd, to_place_id: acc_christchurch_house, driver_id: m_leo, vehicle_id: car_south, start: "15:25", end: "18:45"}
+      - {id: d6_checkin, type: checkin, title: 入住基督城民宿, place_id: acc_christchurch_house, accommodation_id: acc_christchurch, start: "18:45", end: "19:00"}
+      - {id: d6_dinner, type: meal, title: 晚餐、整理行李、早点休息, place_id: acc_christchurch_house, start: "19:00", end: "20:00"}
+
+  # ---------------- D7 11/29 基督城 ✈ 汉密尔顿 → 蓝泉 → 陶波 → 罗托鲁瓦 ----------------
+  - date: 2026-11-29
+    segment_id: seg_north
+    night_city: 罗托鲁瓦
+    route: 基督城 ✈ 汉密尔顿 → 蓝泉 → 陶波湖 → 胡卡瀑布 → 罗托鲁瓦
+    items:
+      - {id: d7_checkout, type: checkout, title: 基督城民宿凌晨退房, place_id: acc_christchurch_house, accommodation_id: acc_christchurch, start: "04:40", end: "04:55", notes: [需确认民宿可以凌晨自助退房]}
+      - {id: d7_drive_airport, type: drive, title: 前往基督城机场, from_place_id: acc_christchurch_house, to_place_id: nz_chc_airport, driver_id: m_leo, vehicle_id: car_south, start: "04:55", end: "05:15"}
+      - {id: d7_car_dropoff, type: car_dropoff, title: 基督城机场还车, place_id: nz_chc_airport, vehicle_id: car_south, start: "05:15", end: "05:25"}
+      - {id: d7_flight_jq270, type: flight, title: "JQ270 基督城 → 汉密尔顿", from_place_id: nz_chc_airport, to_place_id: nz_hlz_airport, start: "07:15", end: "08:30", flight: {number: JQ270}, checkin_before_min: 90, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_flight_jq270], source: evidence}
+      - {id: d7_bags, type: buffer, title: 取行李, place_id: nz_hlz_airport, start: "08:30", end: "09:00"}
+      - {id: d7_car_pickup, type: car_pickup, title: 汉密尔顿机场取车, place_id: nz_hlz_airport, vehicle_id: car_north, start: "09:00", end: "09:30"}
+      - {id: d7_drive_blue_spring, type: drive, title: 前往蓝泉, from_place_id: nz_hlz_airport, to_place_id: nz_te_waihou_blue_spring, driver_id: m_leo, vehicle_id: car_north, start: "09:30", end: "10:20"}
+      - {id: d7_blue_spring, type: activity, title: Te Waihou 蓝泉步道, place_id: nz_te_waihou_blue_spring, start: "10:20", end: "11:50"}
+      - {id: d7_drive_taupo, type: drive, title: 前往陶波湖, from_place_id: nz_te_waihou_blue_spring, to_place_id: nz_lake_taupo, driver_id: m_tony, vehicle_id: car_north, start: "11:50", end: "13:15"}
+      - {id: d7_lunch, type: meal, title: 陶波湖边午餐, place_id: nz_lake_taupo, start: "13:15", end: "14:15"}
+      - {id: d7_drive_huka, type: drive, title: 前往胡卡瀑布, from_place_id: nz_lake_taupo, to_place_id: nz_huka_falls, driver_id: m_tony, vehicle_id: car_north, start: "14:15", end: "14:30"}
+      - {id: d7_huka, type: activity, title: 胡卡瀑布, place_id: nz_huka_falls, start: "14:30", end: "15:10"}
+      - {id: d7_drive_rotorua, type: drive, title: 前往罗托鲁瓦, from_place_id: nz_huka_falls, to_place_id: acc_rotorua_inn, driver_id: m_leo, vehicle_id: car_north, start: "15:10", end: "16:25"}
+      - {id: d7_checkin, type: checkin, title: 入住 Lakeside Inn, place_id: acc_rotorua_inn, accommodation_id: acc_rotorua, start: "16:30", end: "16:45"}
+      - {id: d7_dinner, type: meal, title: 晚餐、湖边散步, place_id: acc_rotorua_inn, start: "18:00", end: "19:00"}
+
+  # ---------------- D8 11/30 白水漂流 + 地热公园 ----------------
+  - date: 2026-11-30
+    segment_id: seg_north
+    night_city: 罗托鲁瓦
+    route: 罗托鲁瓦 → Kaituna River → Wai-O-Tapu → 罗托鲁瓦
+    items:
+      - {id: d8_drive_kaituna, type: drive, title: 前往 Kaituna Cascades, from_place_id: acc_rotorua_inn, to_place_id: nz_kaituna_cascades, driver_id: m_leo, vehicle_id: car_north, start: "07:45", end: "08:10"}
+      - {id: d8_rafting, type: activity, title: Kaituna 五级白水漂流, place_id: nz_kaituna_cascades, start: "08:30", end: "10:30", checkin_before_min: 15, booking_status: to_book, source: knowledge_base, cost: {amount: 135, currency: NZD}}
+      - {id: d8_change, type: buffer, title: 更衣、休息, place_id: nz_kaituna_cascades, start: "10:30", end: "11:15"}
+      - {id: d8_lunch, type: meal, title: 午餐, place_id: nz_kaituna_cascades, start: "11:15", end: "12:00"}
+      - {id: d8_drive_waiotapu, type: drive, title: 前往 Wai-O-Tapu, from_place_id: nz_kaituna_cascades, to_place_id: nz_wai_o_tapu, driver_id: m_tony, vehicle_id: car_north, start: "12:00", end: "12:45"}
+      - {id: d8_waiotapu, type: activity, title: Wai-O-Tapu 地热公园, place_id: nz_wai_o_tapu, start: "12:45", end: "14:45", booking_status: to_book, source: knowledge_base, cost: {amount: 47, currency: NZD}}
+      - {id: d8_drive_back, type: drive, title: 返回罗托鲁瓦, from_place_id: nz_wai_o_tapu, to_place_id: acc_rotorua_inn, driver_id: m_tony, vehicle_id: car_north, start: "14:45", end: "15:20"}
+      - {id: d8_free, type: free_time, title: 民宿休息或湖边散步, place_id: acc_rotorua_inn, start: "15:30", end: "17:00"}
+      - {id: d8_dinner, type: meal, title: 晚餐, place_id: acc_rotorua_inn, start: "18:00", end: "19:00"}
+
+  # ---------------- D9 12/1 霍比屯 → 奥克兰 ----------------
+  - date: 2026-12-01
+    segment_id: seg_north
+    night_city: 奥克兰
+    route: 罗托鲁瓦 → 霍比屯 → 奥克兰 Flat Bush
+    items:
+      - {id: d9_checkout, type: checkout, title: 罗托鲁瓦退房, place_id: acc_rotorua_inn, accommodation_id: acc_rotorua, start: "07:25", end: "07:40"}
+      - {id: d9_drive_hobbiton, type: drive, title: 前往霍比屯, from_place_id: acc_rotorua_inn, to_place_id: nz_hobbiton, driver_id: m_leo, vehicle_id: car_north, start: "07:40", end: "08:50"}
+      - {id: d9_hobbiton, type: activity, title: 霍比屯电影取景地标准导览, place_id: nz_hobbiton, start: "09:10", end: "11:40", checkin_before_min: 20, booking_status: to_book, source: knowledge_base, cost: {amount: 130, currency: NZD}, notes: [行李都在车上，注意停车期间的行李安全]}
+      - {id: d9_lunch, type: meal, title: 午餐, place_id: nz_hobbiton, start: "11:40", end: "12:30"}
+      - {id: d9_drive_auckland, type: drive, title: 前往奥克兰, from_place_id: nz_hobbiton, to_place_id: acc_auckland_flat_bush, driver_id: m_tony, vehicle_id: car_north, start: "12:30", end: "15:00"}
+      - {id: d9_checkin, type: checkin, title: 入住 Flat Bush 民宿, place_id: acc_auckland_flat_bush, accommodation_id: acc_auckland, start: "15:00", end: "15:15"}
+      - {id: d9_drive_viaduct, type: drive, title: 前往 Viaduct Harbour, from_place_id: acc_auckland_flat_bush, to_place_id: nz_viaduct_harbour, driver_id: m_leo, vehicle_id: car_north, start: "15:40", end: "16:15"}
+      - {id: d9_viaduct, type: free_time, title: Viaduct Harbour 散步、购物, place_id: nz_viaduct_harbour, start: "16:15", end: "18:00"}
+      - {id: d9_dinner, type: meal, title: 晚餐, place_id: nz_viaduct_harbour, start: "18:00", end: "19:30"}
+      - {id: d9_drive_home, type: drive, title: 返回民宿, from_place_id: nz_viaduct_harbour, to_place_id: acc_auckland_flat_bush, driver_id: m_leo, vehicle_id: car_north, start: "19:30", end: "20:05"}
+
+  # ---------------- D10 12/2 奥克兰 ✈ 墨尔本 ----------------
+  - date: 2026-12-02
+    segment_id: seg_north
+    route: 奥克兰 ✈ 墨尔本
+    items:
+      - {id: d10_checkout, type: checkout, title: 奥克兰民宿退房, place_id: acc_auckland_flat_bush, accommodation_id: acc_auckland, start: "09:30", end: "09:45"}
+      - {id: d10_drive_city, type: drive, title: 前往市区, from_place_id: acc_auckland_flat_bush, to_place_id: nz_viaduct_harbour, driver_id: m_tony, vehicle_id: car_north, start: "09:45", end: "10:20"}
+      - {id: d10_city, type: free_time, title: 奥克兰市区或海港短途游览, place_id: nz_viaduct_harbour, start: "10:20", end: "12:00"}
+      - {id: d10_lunch, type: meal, title: 午餐, place_id: nz_viaduct_harbour, start: "12:00", end: "13:00"}
+      - {id: d10_free, type: free_time, title: 自由活动, place_id: nz_viaduct_harbour, start: "13:00", end: "14:30"}
+      - {id: d10_drive_airport, type: drive, title: 前往奥克兰机场、加油, from_place_id: nz_viaduct_harbour, to_place_id: nz_akl_airport, driver_id: m_tony, vehicle_id: car_north, start: "15:00", end: "15:40"}
+      - {id: d10_car_dropoff, type: car_dropoff, title: 奥克兰机场还车, place_id: nz_akl_airport, vehicle_id: car_north, start: "15:40", end: "16:00"}
+      - {id: d10_dinner, type: meal, title: 机场晚餐, place_id: nz_akl_airport, start: "17:00", end: "17:45"}
+      - {id: d10_flight_qf206, type: flight, title: "QF206 奥克兰 → 墨尔本", from_place_id: nz_akl_airport, to_place_id: au_mel_airport, start: "19:05", end: "2026-12-02T21:15:00+11:00", flight: {number: QF206, international: true}, checkin_before_min: 180, booking_status: booked, locked: true, lock_reason: evidence, evidence_ids: [ev_flight_qf206], source: evidence}

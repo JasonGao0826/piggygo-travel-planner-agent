@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* 品牌色（取自小猪游记 logo）：强调色用"Go"的天蓝（加深一档，保证白底上的文字够清楚），
+     点缀用小猪的粉色和"Piggy"的巧克力棕 */
+  --color-accent: #2f7bc8;
+  --color-accent-hover: #2566a8;
+  --color-accent-soft: #eaf3fc;
+  --color-accent-line: #bfdaf5;
+  --color-piggy: #f4a7a6;
+  --color-piggy-soft: #fff1f0;
+  --color-cocoa: #6b3324;
+
+  --color-surface: #ffffff;
+  --color-canvas: #f6f7f9;
+  --color-line: #e5e7eb;
+  --color-ink: #1f2933;
+  --color-ink-soft: #52606d;
+  --color-ink-faint: #8a96a3;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* 手机上输入框不小于 16px，避免 iOS 自动放大 */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 15px;
+  }
+}
+
+/* 助手回复（Markdown） */
+.md {
+  overflow-wrap: anywhere;
+}
+.md > * + * {
+  margin-top: 0.6em;
+}
+.md h1,
+.md h2,
+.md h3,
+.md h4 {
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 0.9em;
+}
+.md h1 {
+  font-size: 1.15em;
+}
+.md h2 {
+  font-size: 1.08em;
+}
+.md h3,
+.md h4 {
+  font-size: 1em;
+}
+.md ul {
+  list-style: disc;
+  padding-left: 1.3em;
+}
+.md ol {
+  list-style: decimal;
+  padding-left: 1.4em;
+}
+.md li + li {
+  margin-top: 0.2em;
+}
+.md a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.md code {
+  background: #eef0f3;
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
+  font-size: 0.92em;
+}
+.md pre {
+  background: #eef0f3;
+  border-radius: 8px;
+  padding: 0.7em 0.9em;
+  overflow-x: auto;
+}
+.md pre code {
+  background: none;
+  padding: 0;
+}
+.md blockquote {
+  border-left: 3px solid var(--color-line);
+  padding-left: 0.8em;
+  color: var(--color-ink-soft);
+}
+.md hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+}
+.md table {
+  border-collapse: collapse;
+  font-size: 0.93em;
+  min-width: 100%;
+}
+.md th,
+.md td {
+  border: 1px solid var(--color-line);
+  padding: 0.35em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+.md th {
+  background: #f1f3f5;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 横向滚动条细一点 */
+.scroll-thin {
+  scrollbar-width: thin;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

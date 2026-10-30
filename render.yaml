@@ -1,0 +1,39 @@
+# Render 的部署配置（Blueprint）。在 Render 上 New → Blueprint，选这个仓库，就会按这里建好服务。
+# 步骤见 docs/上线指南.md。改了这个文件、推到 GitHub 后，Render 会按新配置同步。
+services:
+  - type: web
+    name: piggygo
+    runtime: docker
+    region: singapore            # 离中国、澳洲都比较近；建好以后不能改
+    plan: starter                # 0.5 核、512 MB 内存，7 美元/月。持久硬盘不能用免费方案
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit    # main 分支有新提交就自动重新部署
+    disk:
+      name: piggygo-data
+      mountPath: /data           # 数据库、上传的凭证、缓存都在这里，重新部署不会丢
+      sizeGB: 1
+    envVars:
+      - key: AUTH_MODE
+        value: invite            # 用专属邀请链接登录
+      - key: DATA_DIR
+        value: /data
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: OPENAI_API_KEY
+        sync: false              # 第一次建服务时 Render 会让你填；只填在 Render 网页上，不要写进代码
+      - key: OPENAI_MODEL
+        value: gpt-6.1-sol
+      - key: OPENAI_REASONING_EFFORT
+        value: medium
+      - key: ADMIN_TOKEN
+        generateValue: true      # 管理页面的口令，Render 随机生成，在 Environment 页面查看
+      - key: BETA_CODE
+        generateValue: true      # 新建行程要填的内测邀请码。保留 Render 生成的随机值，不要改成好记的短词
+      - key: DAILY_LLM_CALLS_PER_TRIP
+        value: "300"             # 每个行程每天最多调用模型 300 次（问猪猪一次通常要 2–6 次）
+      - key: DAILY_LLM_CALLS_TOTAL
+        value: "3000"            # 全站每天最多调用模型 3000 次，防止费用失控
+      - key: DAILY_NEW_TRIPS
+        value: "10"              # 全站每天最多新建 10 个行程（生成一个行程要调用多次模型）

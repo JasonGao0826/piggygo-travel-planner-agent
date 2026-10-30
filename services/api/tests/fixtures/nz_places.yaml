@@ -1,0 +1,237 @@
+# 测试用的冻结景点数据，取自新西兰计划 V3 报告（2026-10）。
+# 正式知识库在 data/kb/nz/places.yaml（经官网核实）；这里固定不变，保证测试结果稳定。
+
+places:
+  # ---------- 机场 ----------
+  - {id: au_mel_airport, name_zh: 墨尔本机场, name_en: Melbourne Airport, kind: airport, region: 澳洲, city: Melbourne, always_open: true}
+  - {id: nz_zqn_airport, name_zh: 皇后镇机场, name_en: Queenstown Airport, kind: airport, region: 南岛, city: Queenstown, always_open: true}
+  - {id: nz_chc_airport, name_zh: 基督城机场, name_en: Christchurch Airport, kind: airport, region: 南岛, city: Christchurch, always_open: true}
+  - {id: nz_hlz_airport, name_zh: 汉密尔顿机场, name_en: Hamilton Airport, kind: airport, region: 北岛, city: Hamilton, always_open: true}
+  - {id: nz_akl_airport, name_zh: 奥克兰机场, name_en: Auckland Airport, kind: airport, region: 北岛, city: Auckland, always_open: true}
+
+  # ---------- 住宿 ----------
+  - {id: acc_queenstown_jacks_point, name_zh: 皇后镇 Jack's Point 湖景屋, name_en: "Jack's Point Lake House", kind: accommodation, region: 南岛, city: Queenstown, address: "1 Example Road, Jacks Point", always_open: true}
+  - {id: acc_twizel_house, name_zh: 特威泽尔山景度假屋, name_en: Twizel holiday home, kind: accommodation, region: 南岛, city: Twizel, address: "2 Example Road, Twizel", always_open: true}
+  - {id: acc_christchurch_house, name_zh: 基督城三卧室家庭住宅, name_en: Christchurch 3-bedroom house, kind: accommodation, region: 南岛, city: Christchurch, always_open: true}
+  - {id: acc_rotorua_inn, name_zh: 罗托鲁瓦湖畔旅馆, name_en: Lakeside Inn, kind: accommodation, region: 北岛, city: Rotorua, address: "3 Example Road, Rotorua", always_open: true}
+  - {id: acc_auckland_flat_bush, name_zh: 奥克兰 Flat Bush 三卧室民宿, name_en: Flat Bush 3-bedroom home, kind: accommodation, region: 北岛, city: Auckland, address: "4 Example Road, Flat Bush, Auckland", always_open: true}
+
+  # ---------- 城镇 ----------
+  - {id: nz_queenstown_town_centre, name_zh: 皇后镇市区与湖边, name_en: Queenstown town centre & lakefront, kind: town, region: 南岛, city: Queenstown, tags: [town], always_open: true}
+  - {id: nz_te_anau_town, name_zh: 蒂阿瑙, name_en: Te Anau, kind: town, region: 南岛, city: Te Anau, tags: [town, fuel], always_open: true, notes: [前往米尔福德前最后一个可靠的加油点]}
+  - {id: nz_wanaka_town, name_zh: 瓦纳卡镇, name_en: Wānaka town centre, kind: town, region: 南岛, city: Wanaka, tags: [town], always_open: true}
+  - {id: nz_cromwell_town, name_zh: 克伦威尔, name_en: Cromwell, kind: town, region: 南岛, city: Cromwell, tags: [town, fuel], always_open: true}
+
+  # ---------- 南岛项目 ----------
+  - id: nz_skyline_queenstown
+    name_zh: 皇后镇天空缆车＋Luge
+    name_en: Skyline Queenstown
+    kind: activity
+    region: 南岛
+    city: Queenstown
+    tags: [gondola, luge]
+    hours: [{open: "09:30", close: "21:00"}]
+    booking: {required: true, url: "https://queenstown.skyline.co.nz/"}
+    prices:
+      - {label: 缆车, money: {amount: 69, currency: NZD}}
+      - {label: 缆车＋3 次 Luge, money: {amount: 99, currency: NZD}}
+    duration_min: 90
+    duration_max: 120
+
+  - id: nz_skytrek_paragliding
+    name_zh: Skytrek 双人滑翔伞
+    name_en: Skytrek Tandem Paragliding
+    kind: activity
+    region: 南岛
+    city: Queenstown
+    tags: [paragliding]
+    hours: [{season: 夏季, from_md: "10-01", to_md: "04-30", open: "09:00", close: "19:30"}]
+    booking: {required: true, url: "https://www.skytrek.co.nz/"}
+    prices: [{label: 双人滑翔伞, money: {amount: 369, currency: NZD}}]
+    checkin_before_min: 30
+    weather_dependent: true
+    notes: [受风速和天气影响，建议保留改期空间]
+
+  - id: nz_hydro_attack
+    name_zh: Hydro Attack 鲨鱼艇
+    name_en: Hydro Attack
+    kind: activity
+    region: 南岛
+    city: Queenstown
+    address: Lapsley Butson Wharf, Queenstown Lakefront
+    tags: [shark_boat]
+    hours: [{season: 春季, open: "09:30", close: "16:30"}]
+    booking: {required: true, url: "https://watersports.nz/hydro-attack"}
+    checkin_before_min: 15
+    notes: [一艇 2 人]
+
+  - id: nz_deer_park_heights
+    name_zh: 小鹿公园
+    name_en: Deer Park Heights
+    kind: attraction
+    region: 南岛
+    city: Queenstown
+    tags: [wildlife, scenic_drive]
+    hours: [{open: "08:00", close: "20:00"}]
+    booking: {required: true, lead_days: 7, url: "https://deerparkheights.co.nz/book-now/", notes: 需要提供租车车牌号}
+    prices: [{label: 每车, money: {amount: 75, currency: NZD, per: vehicle}}]
+
+  - {id: nz_mirror_lakes, name_zh: 镜湖, name_en: Mirror Lakes, kind: viewpoint, region: 南岛, city: Te Anau, tags: [viewpoint], always_open: true}
+
+  - id: nz_milford_sound_terminal
+    name_zh: 米尔福德峡湾游船码头
+    name_en: Milford Sound Visitor Terminal
+    kind: activity
+    region: 南岛
+    city: Milford Sound
+    tags: [cruise, fjord]
+    hours: [{open: "08:00", close: "17:30"}]
+    booking: {required: true, url: "https://www.realnz.com/en/experiences/day-cruises/milford-sound-classic-cruise/"}
+    checkin_before_min: 20
+    notes: [峡湾区域手机信号有限，提前保存凭证]
+
+  - id: nz_real_guns
+    name_zh: Real Guns 实弹射击
+    name_en: Real Guns New Zealand
+    kind: activity
+    region: 南岛
+    city: Cardrona
+    address: 1081 Cardrona Valley Road, Wānaka 9381
+    tags: [shooting]
+    hours: [{open: "10:00", close: "18:00"}]
+    booking: {required: true, url: "https://www.realguns.nz/"}
+    prices: [{label: 起价, money: {amount: 169, currency: NZD}}]
+    checkin_before_min: 15
+    restrictions:
+      - {code: id_document, value: passport, text: 必须带护照原件，澳洲驾照不被认可}
+
+  - id: nz_cardrona_horse_riding
+    name_zh: Cardrona 骑马
+    name_en: The Cardrona horse trekking
+    kind: activity
+    region: 南岛
+    city: Cardrona
+    tags: [horse_riding]
+    hours: [{open: "09:00", close: "17:00"}]
+    booking: {required: true}
+
+  - {id: nz_wanaka_tree, name_zh: 瓦纳卡孤独树, name_en: That Wānaka Tree, kind: viewpoint, region: 南岛, city: Wanaka, tags: [photo_spot], always_open: true}
+
+  - id: nz_lighthorse_glenorchy
+    name_zh: Lighthorse 格林诺奇骑马
+    name_en: Lighthorse Adventures
+    kind: activity
+    region: 南岛
+    city: Glenorchy
+    address: 2 Swamp Road, Glenorchy, Otago 9372
+    tags: [horse_riding]
+    hours: [{open: "08:00", close: "18:00"}]
+    booking: {required: true, url: "https://www.lighthorseadventures.com/treks/"}
+    prices:
+      - {label: Easy Rider, money: {amount: 249, currency: NZD}}
+      - {label: River Wild, money: {amount: 379, currency: NZD}}
+    checkin_before_min: 30
+    restrictions:
+      - {code: max_weight_kg, value: 105, text: 骑手体重上限 105kg（含衣物和鞋）}
+      - {code: english_required, text: 需要能听懂英语安全指导}
+
+  - id: nz_high_country_horses
+    name_zh: High Country Horses 格林诺奇骑马
+    name_en: High Country Horses
+    kind: activity
+    region: 南岛
+    city: Glenorchy
+    tags: [horse_riding]
+    hours: [{open: "09:00", close: "17:00"}]
+    booking: {required: true}
+
+  - {id: nz_glenorchy_wharf, name_zh: 格林诺奇码头与红房子, name_en: Glenorchy Wharf & red shed, kind: viewpoint, region: 南岛, city: Glenorchy, tags: [photo_spot], always_open: true}
+
+  - id: nz_hooker_valley_track
+    name_zh: 胡克谷步道
+    name_en: Hooker Valley Track
+    kind: trailhead
+    region: 南岛
+    city: Aoraki/Mount Cook
+    tags: [hiking]
+    always_open: true
+    weather_dependent: true
+    duration_min: 180
+    duration_max: 300
+    notes: [11 月底仍可能大风、降雨和低温，携带防风防水外套和保暖层]
+
+  - id: nz_alpine_salmon_pukaki
+    name_zh: 高山三文鱼
+    name_en: Mt Cook Alpine Salmon
+    kind: restaurant
+    region: 南岛
+    city: Lake Pukaki
+    tags: [food]
+    hours: [{open: "09:00", close: "17:00"}]
+
+  - id: nz_church_good_shepherd
+    name_zh: 好牧羊人教堂
+    name_en: Church of the Good Shepherd
+    kind: attraction
+    region: 南岛
+    city: Lake Tekapo
+    tags: [church, photo_spot]
+    hours: [{season: 夏令时, from_md: "09-28", to_md: "04-05", open: "09:00", close: "20:00"}]
+
+  # ---------- 北岛项目 ----------
+  - {id: nz_te_waihou_blue_spring, name_zh: 蓝泉, name_en: Te Waihou Walkway / Blue Spring, kind: trailhead, region: 北岛, city: Putaruru, tags: [hiking, spring], always_open: true}
+  - {id: nz_lake_taupo, name_zh: 陶波湖, name_en: Lake Taupō lakefront, kind: viewpoint, region: 北岛, city: Taupo, tags: [lake], always_open: true}
+  - {id: nz_huka_falls, name_zh: 胡卡瀑布, name_en: Huka Falls, kind: viewpoint, region: 北岛, city: Taupo, tags: [waterfall], always_open: true}
+
+  - id: nz_kaituna_cascades
+    name_zh: Kaituna 五级白水漂流
+    name_en: Kaituna Cascades
+    kind: activity
+    region: 北岛
+    city: Okere Falls
+    tags: [rafting]
+    hours: [{season: 夏季, open: "08:00", close: "18:30"}]
+    booking: {required: true}
+    prices: [{label: 成人, money: {amount: 135, currency: NZD}}]
+    checkin_before_min: 15
+    restrictions:
+      - {code: max_weight_kg, value: 120, text: 体重不超过 120kg}
+      - {code: fitness, text: 高强度水上活动，要身体健康、能适应深水}
+
+  - id: nz_wai_o_tapu
+    name_zh: Wai-O-Tapu 地热公园
+    name_en: Wai-O-Tapu Thermal Wonderland
+    kind: attraction
+    region: 北岛
+    city: Rotorua
+    tags: [geothermal]
+    hours: [{open: "08:30", close: "16:30", last_entry: "15:00"}]
+    booking: {required: true, url: "https://www.waiotapu.co.nz/"}
+    prices: [{label: 成人, money: {amount: 47, currency: NZD}}]
+
+  - id: nz_hobbiton
+    name_zh: 霍比屯电影取景地
+    name_en: Hobbiton Movie Set
+    kind: activity
+    region: 北岛
+    city: Matamata
+    tags: [film_set]
+    hours: [{open: "08:30", close: "18:00"}]
+    booking: {required: true, notes: 位置紧张}
+    prices: [{label: 成人, money: {amount: 130, currency: NZD}}]
+    checkin_before_min: 20
+
+  - id: nz_waitomo_glowworm_caves
+    name_zh: 怀托摩萤火虫洞
+    name_en: Waitomo Glowworm Caves
+    kind: activity
+    region: 北岛
+    city: Waitomo
+    tags: [glowworm, cave]
+    hours: [{open: "09:00", close: "17:00"}]
+    booking: {required: true}
+    checkin_before_min: 30
+    restrictions:
+      - {code: no_photo, text: 洞内禁止拍照和录像}
+
+  - {id: nz_viaduct_harbour, name_zh: 奥克兰高架桥港, name_en: Viaduct Harbour, kind: viewpoint, region: 北岛, city: Auckland, tags: [waterfront], always_open: true}

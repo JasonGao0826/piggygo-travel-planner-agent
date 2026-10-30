@@ -1,0 +1,179 @@
+{
+  "$defs": {
+    "AddOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "add",
+          "title": "Op",
+          "type": "string"
+        },
+        "collection": {
+          "enum": [
+            "items",
+            "accommodations",
+            "vehicles",
+            "todos"
+          ],
+          "title": "Collection",
+          "type": "string"
+        },
+        "value": {
+          "additionalProperties": true,
+          "title": "Value",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "collection",
+        "value"
+      ],
+      "title": "AddOp",
+      "type": "object"
+    },
+    "RemoveOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "remove",
+          "title": "Op",
+          "type": "string"
+        },
+        "collection": {
+          "enum": [
+            "items",
+            "accommodations",
+            "vehicles",
+            "todos"
+          ],
+          "title": "Collection",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "collection",
+        "id"
+      ],
+      "title": "RemoveOp",
+      "type": "object"
+    },
+    "UpdateDayOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "update_day",
+          "title": "Op",
+          "type": "string"
+        },
+        "date": {
+          "format": "date",
+          "title": "Date",
+          "type": "string"
+        },
+        "set": {
+          "additionalProperties": true,
+          "title": "Set",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "date",
+        "set"
+      ],
+      "title": "UpdateDayOp",
+      "type": "object"
+    },
+    "UpdateMetaOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "update_meta",
+          "title": "Op",
+          "type": "string"
+        },
+        "set": {
+          "additionalProperties": true,
+          "title": "Set",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "set"
+      ],
+      "title": "UpdateMetaOp",
+      "type": "object"
+    },
+    "UpdateOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "update",
+          "title": "Op",
+          "type": "string"
+        },
+        "collection": {
+          "enum": [
+            "items",
+            "accommodations",
+            "vehicles",
+            "todos"
+          ],
+          "title": "Collection",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "set": {
+          "additionalProperties": true,
+          "title": "Set",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "collection",
+        "id",
+        "set"
+      ],
+      "title": "UpdateOp",
+      "type": "object"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "add": "#/$defs/AddOp",
+      "remove": "#/$defs/RemoveOp",
+      "update": "#/$defs/UpdateOp",
+      "update_day": "#/$defs/UpdateDayOp",
+      "update_meta": "#/$defs/UpdateMetaOp"
+    },
+    "propertyName": "op"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/AddOp"
+    },
+    {
+      "$ref": "#/$defs/UpdateOp"
+    },
+    {
+      "$ref": "#/$defs/RemoveOp"
+    },
+    {
+      "$ref": "#/$defs/UpdateDayOp"
+    },
+    {
+      "$ref": "#/$defs/UpdateMetaOp"
+    }
+  ]
+}

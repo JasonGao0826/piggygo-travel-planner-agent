@@ -1,0 +1,1248 @@
+# 新西兰景点知识库（第一版，2026-10-22 核实）。行程窗口 2026-11-23 ~ 2026-12-02。
+# 价格为新西兰元；坐标取自 OpenStreetMap Nominatim；营业时间以官网为准，出发前再核对。
+places:
+- id: nz_skyline_queenstown
+  name_zh: 皇后镇天际缆车与斜坡滑车（Skyline）
+  name_en: Skyline Queenstown (Gondola & Luge)
+  kind: attraction
+  region: 南岛
+  city: Queenstown
+  address: Brecon Street, Queenstown（缆车下站，OSM 门牌 53 Brecon Street）
+  lat: -45.02831
+  lon: 168.656123
+  tags:
+  - gondola
+  - luge
+  - viewpoint
+  hours:
+  - season: 官网常规时间（缆车）
+    open: '09:30'
+    close: '22:00'
+    last_entry: '21:00'
+  booking:
+    required: false
+    url: https://queenstown.skyline.co.nz/
+    notes: 官网建议提前在线订票，现场票视余位；滑车票在线购买时必须选 30 分钟场次，第一趟须在该场次内完成，其余次数当天营业时间内用完。
+  prices:
+  - label: 缆车往返 成人
+    money:
+      amount: 69
+      currency: NZD
+      per: person
+  - label: 缆车 + 3 次滑车 成人
+    money:
+      amount: 99
+      currency: NZD
+      per: person
+  - label: 缆车 + 6 次滑车 成人
+    money:
+      amount: 106
+      currency: NZD
+      per: person
+  checkin_before_min: 45
+  restrictions:
+  - code: min_age
+    value: 6
+    text: 独自驾驶滑车须满 6 岁且身高 110cm 以上
+  - code: min_height_cm
+    value: 110
+    text: 独自驾驶滑车身高须 110cm 以上；2 岁以上且 85cm 以上儿童可与成人同乘
+  - code: other
+    text: 滑车上禁止手持拍摄，GoPro/相机须牢固固定
+  weather_dependent: true
+  official_url: https://queenstown.skyline.co.nz/
+  intro: 乘缆车上鲍勃峰俯瞰皇后镇和瓦卡蒂普湖，山顶可玩斜坡滑车（Luge）。
+  notes:
+  - 缆车 09:30–21:00 可登车，滑车 10:00–21:00 发车。
+  - 滑车场次前至少 45 分钟到缆车下站，验票后坐缆车上山。
+  - 天气暂停时，滑车票会自动顺延到下一个场次。
+  - 山顶在改建，部分区域要走脚手架通道。
+  - 下站后方有收费多层停车楼，出示缆车票有折扣。
+  - 露营车不能停在市中心，大车停 Boundary Street 停车场。
+  data_notes:
+  - 21:00 是最晚登车时间，官网说明已预留山顶 1 小时，close 22:00 为推算；滑车 21:00 为最后一趟出发。
+  - 官网只公布未来几周的营业时间（2026-10-22 查询为常规时间），出发前再核对。
+  - 价格（官网 2026-10-22）：缆车 NZ$69，缆车+3 次滑车 NZ$99，缆车+6 次滑车 NZ$106，与旧计划一致。
+  - 停车楼 297 个车位；CBD 露营车违停罚款 NZ$40–60（Skyline 官网 getting-here 页）。
+  - 游玩时长官网未给出。
+  - 地址门牌 53 Brecon Street 来自 OSM，官网只写 Brecon Street。
+  sources:
+  - https://queenstown.skyline.co.nz/
+  - https://queenstown.skyline.co.nz/opening-hours/
+  - https://queenstown.skyline.co.nz/faqs/
+  - https://queenstown.skyline.co.nz/getting-here/
+  - https://queenstown.skyline.co.nz/things-to-do/queenstown-luge/
+  - https://nominatim.openstreetmap.org/
+  verified_at: &id001 2026-10-22
+- id: nz_skytrek_paragliding
+  name_zh: Skytrek 双人滑翔伞（Coronet Peak 起飞）
+  name_en: Skytrek Tandem Paragliding (Coronet Peak)
+  kind: activity
+  region: 南岛
+  city: Queenstown
+  address: 45 Camp Street, Queenstown（ZipTrek 店内报到集合；起飞点 Coronet Peak）
+  lat: -45.03049
+  lon: 168.66024
+  tags:
+  - paragliding
+  - adventure
+  hours:
+  - season: 夏季滑翔伞（官网：10 月至 5 月初）
+    from_md: '10-01'
+    to_md: '04-30'
+    open: '09:00'
+    close: '21:30'
+    last_entry: '19:30'
+  booking:
+    required: true
+    url: https://www.skytrek.co.nz/
+    notes: 官网在线预订（OperatorHub）。取消：48 小时前免费；48–24 小时收 50%；24 小时内全款。因天气取消可改期或全额退款。
+  prices:
+  - label: 双人滑翔伞 成人
+    money:
+      amount: 369
+      currency: NZD
+      per: person
+  duration_min: 120
+  duration_max: 120
+  restrictions:
+  - code: max_weight_kg
+    value: 120
+    text: 滑翔伞体重上限 120kg（含衣服鞋子；4–5 月降到 110kg），报到时超重直接取消且不退款
+  - code: other
+    text: 18 岁及以下需家长/监护人同意
+  - code: other
+    text: 需穿合适的鞋（最好护脚踝），起飞时要一起助跑
+  weather_dependent: true
+  official_url: https://www.skytrek.co.nz/
+  intro: 从 Coronet Peak 约 4100 英尺处起飞，和教练双人滑翔伞俯瞰皇后镇盆地。
+  notes:
+  - 夏季每 1.5 小时一班，09:00–19:30。
+  - 从报到到回到市区约 2 小时，空中飞 10–20 分钟。
+  - 在 45 Camp Street 的 ZipTrek 店内集合，有免费接驳车，集合点没有停车位。
+  - 自驾可在 Coronet Peak Road 4 号停车场汇合，但降落在别处，需要另有人把车开下山。
+  - 出发前 1 小时查官网 Flight Status（一般每天 8 点前更新）。
+  - 受天气影响很大，建议预留一个备用日。
+  - 迟到不退款；穿护脚踝的鞋，多带一层保暖衣服。
+  - 照片和视频包落地后向教练另购。
+  data_notes:
+  - 班次按官网“每 1.5 小时（9am–7.30pm）”推算为 09:00/10:30/12:00/13:30/15:00/16:30/18:00/19:30，以预订系统为准；close 21:30 为末班 19:30 + 2 小时推算。
+  - 季节规则按官网“10 月至 5 月初”保守写到 04-30。
+  - 2026-10-22 查询当天官网显示中午后全部取消。
+  - 价格 NZ$369 与旧计划一致。
+  - 官网未写报到需提前多少分钟。
+  - 体重上限降到 110kg 的月份：首页写 3–5 月，FAQ 写 4–5 月，不影响 11 月。
+  - 降落点 Flight Park 地址：793 Malaghans Road。
+  sources:
+  - https://www.skytrek.co.nz/
+  - https://www.skytrek.co.nz/faq
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_hydro_attack
+  name_zh: Hydro Attack 鲨鱼潜水艇
+  name_en: Hydro Attack (Seabreacher shark ride)
+  kind: activity
+  region: 南岛
+  city: Queenstown
+  address: Lapsley Butson Wharf, Queenstown lakefront（Earnslaw Park 旁；在 Patagonia Chocolates 前的湖滨售票亭报到）
+  lat: -45.03276
+  lon: 168.6587
+  tags:
+  - shark_boat
+  - boat
+  - adventure
+  hours:
+  - season: 全年
+    open: '09:30'
+    close: '16:15'
+    last_entry: '15:50'
+  booking:
+    required: false
+    url: https://book.hydroattack.co.nz/activity/selection?filter=ProdGroup-HydroAttac
+    notes: 官方称 12–3 月旺季热门时段会提前几天售罄，淡季常可直接到售票亭，在线预订能保证位置。提前 24 小时以上取消全额退款。
+  prices:
+  - label: 单人乘坐
+    money:
+      amount: 199
+      currency: NZD
+      per: person
+  duration_min: 25
+  duration_max: 25
+  checkin_before_min: 15
+  restrictions:
+  - code: min_age
+    value: 6
+    text: 6 岁以上；18 岁以下需家长/监护人一起报到并签同意书
+  - code: max_weight_kg
+    value: 105
+    text: 预订系统写 105kg，官网页面写 110kg，按较低的 105kg
+  - code: other
+    value: 192cm
+    text: 身高上限 192cm（预订系统写 193cm），超限需先到码头评估
+  - code: other
+    text: 孕妇或有严重心脏病者不建议；有伤病或颈背问题需预订时说明
+  weather_dependent: true
+  official_url: https://watersports.nz/hydro-attack
+  intro: 坐进鲨鱼造型半潜艇，在瓦卡蒂普湖里下潜、跃出水面和翻滚，一人一船与驾驶员同乘。
+  notes:
+  - 在 Patagonia Chocolates 前的湖滨售票亭报到，提前 15 分钟。
+  - 一人一艇与驾驶员同乘，水上约 15 分钟，全程约 25 分钟。
+  - 热门项目，名额紧张，尽早预订。
+  - 天气不好会改期或全额退款，出发前 1 小时打电话确认。
+  - 联系方式：book@watersports.nz，+64 3 442 7375。
+  data_notes:
+  - 预订系统场次（2026-10-22 查 11-25、11-28）：09:30、09:50、10:10、10:50、12:10、13:30、13:50、14:30、15:50；close 16:15 为末班 + 25 分钟推算。
+  - 2026-10-22 查询时 11-25、11-28 所有场次都显示 Full，可能已售罄或尚未放位。
+  - 体重：预订系统 105kg、官网页面 110kg；身高：官网 192cm、预订系统 193cm，均取较严的值。
+  - 价格 NZ$199（旧计划未列价）。
+  sources:
+  - https://watersports.nz/hydro-attack
+  - https://watersports.nz/
+  - https://book.hydroattack.co.nz/activity/selection?filter=ProdGroup-HydroAttac
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_deer_park_heights
+  name_zh: 小鹿公园（鹿园高地）
+  name_en: Deer Park Heights
+  kind: attraction
+  region: 南岛
+  city: Queenstown
+  address: 432 Peninsula Road, Kelvin Heights, Queenstown 9300（入口已迁移，按官网新入口链接导航，不要只信 Google 地图）
+  lat: -45.03899
+  lon: 168.695845
+  tags:
+  - wildlife
+  - scenic_drive
+  - viewpoint
+  hours:
+  - season: 春季（官网 FAQ）
+    from_md: '09-01'
+    to_md: '11-30'
+    open: '08:00'
+    close: '19:00'
+  - season: 夏季（官网 FAQ）
+    from_md: '12-01'
+    to_md: '02-29'
+    open: '08:00'
+    close: '21:00'
+  - season: 秋冬季（官网 FAQ）
+    from_md: '03-01'
+    to_md: '08-31'
+    open: '08:00'
+    close: '18:00'
+  booking:
+    required: true
+    lead_days: 7
+    url: https://deerparkheights.co.nz/book-now/
+    notes: 只能在官网预订（代理代订无效），提前 7 天开放；每天最多 80 辆车。入口靠车牌识别，要先拿到租车车牌（或之后自己在系统里更新车牌）。当天 17:00 前可在系统里取消。
+  prices:
+  - label: 门票 每车（最多 8 人）
+    money:
+      amount: 75
+      currency: NZD
+      per: vehicle
+  restrictions:
+  - code: other
+    text: 只允许自驾 8 座及以下乘用车（含露营车）；出租车、Uber、包车司机、旅游团、步行、骑车都不能进入
+  - code: other
+    text: 禁止带宠物；禁止商业拍摄/婚纱照（需另行申请）
+  weather_dependent: true
+  official_url: https://deerparkheights.co.nz/
+  intro: 凯尔文高地上的私人观景牧场，自驾上山喂鹿、山羊、驴和迷你马，俯瞰瓦卡蒂普湖与卓越山。
+  notes:
+  - 11 月底前开到 19:00，12 月起开到 21:00，关门后闸门上锁。
+  - 超时没出来会被收费，留足下山时间。
+  - 出发前 7 天才开放预订，靠车牌识别进门，先拿到租车车牌再订。
+  - 入口已迁移，按官网的新入口链接导航，不要只信 Google 地图。
+  - 带 NZ$2 硬币买动物饲料，饲料机只收硬币。
+  - 当天可以待到关门，访问码只能进出各一次。
+  - 下雪会关闭，出发前查官网 road-conditions 页面。
+  data_notes:
+  - 开放时间官网不一致：FAQ 季节表写春季（9–11 月）8am–7pm、夏季（12–2 月）8am–9pm；首页和 Visiting 页写 8am–8pm。按 FAQ 记录。
+  - 超时费说法不一：Visiting 页写自动收 $100，FAQ 写每小时 $50。
+  - 价格：Visiting 页 NZ$75/车，与旧计划一致；FAQ 有一处写 $55，以预订页为准。
+  - 取消截止时间：FAQ 取消写当天 17:00 前，改期写 18:00 前。
+  - 2026-10-22 官网显示当天因下雪关闭。
+  sources:
+  - https://deerparkheights.co.nz/
+  - https://deerparkheights.co.nz/visiting/
+  - https://deerparkheights.co.nz/faq/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_milford_sound_terminal
+  name_zh: 米尔福德峡湾游客码头（RealNZ 经典游船）
+  name_en: Milford Sound Visitor Terminal – RealNZ Milford Sound Classic Cruise
+  kind: activity
+  region: 南岛
+  city: Milford Sound
+  address: Milford Sound Visitor Terminal, Milford Sound Highway (SH94), Milford Sound
+  lat: -44.6682
+  lon: 167.926978
+  tags:
+  - cruise
+  - fjord
+  - boat
+  hours:
+  - season: 每日
+    open: '09:00'
+    close: '15:35'
+    last_entry: '13:55'
+  booking:
+    required: true
+    url: https://www.realnz.com/en/experiences/day-cruises/milford-sound-classic-cruise/
+    notes: 在 RealNZ 官网直接预订：出发前 24 小时以上（新西兰时间）可改期或退款。
+  prices:
+  - label: Classic Cruise 成人起价
+    money:
+      amount: 179
+      currency: NZD
+      per: person
+  - label: （备选）Signature Cruise 成人起价
+    money:
+      amount: 199
+      currency: NZD
+      per: person
+  duration_min: 75
+  duration_max: 100
+  checkin_before_min: 20
+  weather_dependent: true
+  official_url: https://www.realnz.com/en/experiences/day-cruises/milford-sound-classic-cruise/
+  intro: 在米尔福德峡湾坐 RealNZ 经典游船开到塔斯曼海口，看教冠峰、斯特林瀑布和海豹岩。
+  notes:
+  - 经典游船每日 09:00、11:00、12:00、13:15、13:55 出发，约 1 小时 40 分。
+  - 开船前 20 分钟到游客码头报到。
+  - 码头旁停车 NZ$10/小时，只能刷卡；Deepwater Basin 免费停车场要走 20–25 分钟。
+  - 留 45–60 分钟停车并走到码头。
+  - 从蒂阿瑙开过来约 3 小时，从皇后镇 5–6 小时。
+  - 自助餐或野餐盒要提前加购。
+  - 赶不上船一般可以改坐后面的班次，不要开快车。
+  - 通常只有雪天封路或强风才停航，下雨反而瀑布更多。
+  data_notes:
+  - close 15:35 为末班 13:55 + 100 分钟推算；夏季 09:00 班约 1 小时 15 分（官网）。
+  - 车程：RealNZ 写蒂阿瑙 121 km 约 3 小时、皇后镇 411 km 5–6 小时；Fiordland 官方资料（2020 年 10 月版）写蒂阿瑙 120 km 至少 2.5 小时。
+  - “赶不上可改班次”来自 Fiordland 官方资料（2020 年 10 月版）。
+  - RealNZ 主推的 Signature Cruise（NZ$199 起，10:30/13:00/15:25，约 2 小时）是另一个产品，作为备选价格列出。
+  - 旧计划未列价。
+  sources:
+  - https://www.realnz.com/en/experiences/day-cruises/milford-sound-classic-cruise/
+  - https://www.realnz.com/en/experiences/day-cruises/milford-sound-signature-cruise/
+  - https://www.fiordland.org.nz/assets/Trade-Cheat-Sheets/1122-DF-Fact-Sheet-MilfordRoadEMAIL.pdf
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_mirror_lakes
+  name_zh: 镜湖（Mirror Lakes）
+  name_en: Mirror Lakes (Milford Road)
+  kind: viewpoint
+  region: 南岛
+  city: Te Anau
+  address: Milford Road (SH94)，蒂阿瑙以北约 56 km 路边停车场
+  lat: -45.0284
+  lon: 168.010956
+  tags:
+  - viewpoint
+  - short_walk
+  - photo_spot
+  always_open: true
+  duration_min: 10
+  duration_max: 10
+  weather_dependent: true
+  official_url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/mirror-lakes-walk/
+  intro: 米尔福德公路边的一串小湖，无风时能拍到 Earl Mountains 的倒影。
+  notes:
+  - 往返 400 m、约 10 分钟，有观景平台，轮椅可达。
+  - 倒影要无风或微风时才明显。
+  - 禁止带狗。
+  - 米尔福德公路全程没有手机信号。
+  data_notes:
+  - 起点位置“蒂阿瑙以北约 56 km”来自 DOC。
+  - “无手机信号”来自 Fiordland 官方资料（2020 年 10 月版）。
+  - 坐标为 OSM 的湖面点。
+  sources:
+  - https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/mirror-lakes-walk/
+  - https://www.fiordland.org.nz/assets/Trade-Cheat-Sheets/1122-DF-Fact-Sheet-MilfordRoadEMAIL.pdf
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_te_anau_town
+  name_zh: 蒂阿瑙小镇
+  name_en: Te Anau
+  kind: town
+  region: 南岛
+  city: Te Anau
+  address: Te Anau, Southland
+  lat: -45.41449
+  lon: 167.717489
+  tags:
+  - town
+  - fuel
+  - food
+  always_open: true
+  weather_dependent: false
+  official_url: https://www.fiordland.org.nz/visit/te-anau/
+  intro: 蒂阿瑙湖边的峡湾国家公园门户小镇，是自驾去米尔福德峡湾前最后一个可靠的加油和补给点。
+  notes:
+  - 去米尔福德前在蒂阿瑙加满油，米尔福德加油不可靠。
+  - 蒂阿瑙到米尔福德 120 km，至少开 2.5 小时（不含停留）。
+  - 公路上没有手机信号，只有 Knobs Flat 和米尔福德有卡式电话。
+  - 沿途厕所只在蒂阿瑙、Knobs Flat 和米尔福德。
+  - 路上没有餐饮，带足食物和水。
+  data_notes:
+  - 燃油：Fiordland 官方资料（2020 年 10 月版）写米尔福德没有加油站；另有资料（NZTA FAQ 的搜索摘要，页面未能打开）称米尔福德有少量仅刷卡的油泵，未核实。
+  - 加油站和超市营业时间未能从官网核实。
+  sources:
+  - https://www.fiordland.org.nz/visit/te-anau/
+  - https://www.fiordland.org.nz/assets/Trade-Cheat-Sheets/1122-DF-Fact-Sheet-MilfordRoadEMAIL.pdf
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_real_guns
+  name_zh: Real Guns 实弹射击场（卡德罗纳）
+  name_en: Real Guns New Zealand
+  kind: activity
+  region: 南岛
+  city: Cardrona
+  address: 1081 Cardrona Valley Road, Wānaka 9381
+  lat: -44.79013
+  lon: 169.082395
+  tags:
+  - shooting
+  hours:
+  - season: 每日
+    open: '10:00'
+    close: '18:00'
+    last_entry: '16:00'
+  booking:
+    required: true
+    url: https://fareharbor.com/embeds/book/realguns/items/414312/?full-items=yes&flow=831633
+    notes: FareHarbor 在线预订，开场前 30 分钟截止，满员可排候补。
+  prices:
+  - label: Supervised Shooting 基础套餐（FareHarbor 显示价，可能含预订手续费）
+    money:
+      amount: 209.38
+      currency: NZD
+      per: person
+  duration_min: 60
+  duration_max: 120
+  checkin_before_min: 15
+  restrictions:
+  - code: id_document
+    value: passport
+    text: 必须带护照或新西兰驾照原件（不接受澳大利亚驾照）
+  - code: min_age
+    value: 8
+    text: 预订系统标注 8 岁以上
+  - code: min_height_cm
+    value: 130
+    text: 预订系统标注身高 1.3m 以上
+  - code: other
+    text: 穿平底包脚鞋；不能穿背心、人字拖或迷彩服
+  weather_dependent: false
+  official_url: https://www.realguns.nz/
+  intro: 卡德罗纳山谷里的持证射击场，教练一对一指导，从 .22 步枪、霰弹枪一直到 .50 BMG 大口径。
+  notes:
+  - 每天 10:00–18:00 营业，提前 15 分钟报到。
+  - 必须带护照或新西兰驾照原件，澳大利亚驾照不行。
+  - 用信用卡付款的要带上那张卡核对。
+  - 穿平底包脚鞋，不能穿背心、人字拖或迷彩服。
+  - 基础套餐含 20 发 .22 步枪和 10 发霰弹，大口径枪另付费。
+  - AK、AR-15、SCAR 等是 .22 改装版，不是原口径。
+  - 进农场后限速 30 km/h，过桥后右转跟 REALGUNS 牌子走，关着的门随手关上。
+  - 没车可报官方接驳团：NZ$149，12:30 从皇后镇 12 Athol Street 出发，约 18:30 回，射击另订 14:00 场。
+  data_notes:
+  - 营业时间来自官网页头；2026-11-25 预订系统场次为 10:00、12:00、14:00、16:00（2026-10-22 查询）。
+  - 价格：官网未直接标价；FareHarbor 显示 NZ$209.38/人（11-25 10:00 场，2026-10-22 查询），比旧计划“NZ$169 起”贵约 NZ$40，疑含约 5% 预订费。
+  - 年龄：预订系统标注 8+，系统内最小年龄字段为 7，取 8 岁。
+  sources:
+  - https://www.realguns.nz/
+  - https://fareharbor.com/embeds/book/realguns/items/414312/
+  - https://fareharbor.com/api/v1/companies/realguns/items/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_cardrona_horse_riding
+  name_zh: 卡德罗纳山谷骑马（The Cardrona）
+  name_en: The Cardrona Horse Treks
+  kind: activity
+  region: 南岛
+  city: Cardrona
+  address: 2125 Cardrona Valley Road, Wānaka 9381
+  lat: -44.86249
+  lon: 169.021568
+  tags:
+  - horse_riding
+  booking:
+    required: true
+    url: https://www.getyourguide.com/cardrona-l91585/cardrona-valley-horse-trekking-experience-t656467/
+    notes: 官网无法访问，链接为第三方平台（GetYourGuide），预订前先向运营方核实。
+  duration_min: 120
+  duration_max: 210
+  restrictions:
+  - code: max_weight_kg
+    value: 100
+    text: 第三方平台（GetYourGuide）写体重超过 100kg 不能参加，未经官网核实
+  - code: other
+    text: 预订时需告知骑术水平、身高和体重
+  weather_dependent: true
+  intro: 卡德罗纳山谷里的骑马和四驱摩托运营商，有约 2 小时的淘金小径骑行和约 3.5 小时去卡德罗纳老酒店的半日骑行。
+  notes:
+  - 两款路线：淘金小径约 2 小时（9:30 出发），去卡德罗纳酒店的半日骑行约 3.5 小时（12:30 出发，中级以上）。
+  - 预订时告知骑术水平、身高和体重。
+  - 出发前务必打电话或发邮件和运营方确认时间和价格。
+  - 孕妇、脊柱受伤或有心脏病的人不宜参加。
+  data_notes:
+  - 官网（thecardrona.co.nz / thecardrona.com）2026-10-22 无法访问（DNS 错误，本机安全软件把该域名标为恶意），本条全部来自第三方平台。
+  - 路线和出发时间来自 newzealand.com 产品名（搜索结果）和 GetYourGuide，未经官网核实。
+  - 价格未能从官网核实；第三方报价差别大（GetYourGuide 显示 A$405/人），不作为依据。
+  - 营业时间未能从官网核实。
+  - 体重 100kg 上限来自 GetYourGuide。
+  - 卡德罗纳山谷原来的 Back Country Saddles 已搬到 Earnscleugh（Hidden Valley），所以本条用 The Cardrona。
+  sources:
+  - https://www.getyourguide.com/cardrona-l91585/cardrona-valley-horse-trekking-experience-t656467/
+  - https://www.backcountrysaddles.co.nz/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_wanaka_tree
+  name_zh: 瓦纳卡孤独树
+  name_en: That Wānaka Tree
+  kind: viewpoint
+  region: 南岛
+  city: Wanaka
+  address: Roys Bay 湖边，从 Wānaka Watersports 停车场出发
+  lat: -44.69835
+  lon: 169.117564
+  tags:
+  - photo_spot
+  - viewpoint
+  always_open: true
+  weather_dependent: false
+  official_url: https://www.wanaka.co.nz/explore/that-wanaka-tree/
+  intro: 瓦纳卡湖里一棵由篱笆桩长成的柳树，2014 年拿下《新西兰地理》年度照片后成为网红打卡点。
+  notes:
+  - 从 Wānaka Watersports 停车场出发，步道平缓好走。
+  - 不要攀爬或拉扯树枝，这棵树曾被游客弄断过。
+  data_notes:
+  - 树枝损坏：2017 年游客攀爬折断，2020 年遭人砍枝（Lonely Planet、CBS 报道）。
+  - 官方页面标注 Time 3 minutes / Distance 1.7 km，含义不明，未采用。
+  sources:
+  - https://www.wanaka.co.nz/explore/that-wanaka-tree/
+  - https://www.lonelyplanet.com/news/2018/01/23/that-wanaka-tree-new-zealand
+  - https://www.cbsnews.com/news/wanaka-tree-new-zealand-famous-symbol-of-hope-vandalized
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_wanaka_town
+  name_zh: 瓦纳卡小镇湖滨
+  name_en: Wānaka town centre & lakefront
+  kind: town
+  region: 南岛
+  city: Wanaka
+  address: Wānaka town centre, Queenstown-Lakes District
+  lat: -44.69416
+  lon: 169.136463
+  tags:
+  - town
+  - lakefront
+  - food
+  always_open: true
+  weather_dependent: false
+  official_url: https://www.wanaka.co.nz/
+  intro: 瓦纳卡湖南岸的度假小镇，沿湖滨可以走到瓦纳卡孤独树。
+  notes:
+  - 沿湖滨往西可以走到瓦纳卡孤独树。
+  - Real Guns 和卡德罗纳骑马都在去皇后镇的卡德罗纳山谷公路上。
+  data_notes:
+  - 店铺和超市营业时间未逐一核实。
+  - 坐标为 OSM 镇中心点。
+  sources:
+  - https://www.wanaka.co.nz/explore/that-wanaka-tree/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_lighthorse_glenorchy
+  name_zh: Lighthorse 格林诺奇骑马（Easy Rider）
+  name_en: Lighthorse Adventures
+  kind: activity
+  region: 南岛
+  city: Glenorchy
+  address: 2 Swamp Road, Glenorchy
+  lat: -44.80017
+  lon: 168.371907
+  tags:
+  - horse_riding
+  hours:
+  - season: Easy Rider 出发时段
+    open: '09:00'
+    close: '16:30'
+    last_entry: '15:00'
+  booking:
+    required: true
+    url: https://lighthorseadventures.rezdy.com/420341/easy-rider
+    notes: Rezdy 在线预订；需要特殊协助（含残障）的至少提前 24 小时联系。
+  prices:
+  - label: Easy Rider 成人（15 岁以上）
+    money:
+      amount: 249
+      currency: NZD
+      per: person
+  - label: River Wild 成人（2.5 小时，备选）
+    money:
+      amount: 379
+      currency: NZD
+      per: person
+  duration_min: 90
+  duration_max: 90
+  checkin_before_min: 30
+  restrictions:
+  - code: max_weight_kg
+    value: 105
+    text: 体重上限 105kg（穿戴整齐称），报到时称重，超重不能骑且不退款
+  - code: english_required
+    text: 全组每个人都要有足够的英语理解向导指令
+  - code: min_age
+    value: 5
+    text: Easy Rider 儿童 5–14 岁，5–7 岁需牵引（另加 $30），须有成人同骑
+  - code: other
+    text: 骑马时不能背任何包，也不能有挂在脖子或斜挎的带子
+  weather_dependent: true
+  official_url: https://www.lighthorseadventures.com/
+  intro: 格林诺奇的自然马术骑行，Easy Rider 是全程慢步的 90 分钟河谷骑行，零基础可参加。
+  notes:
+  - Easy Rider 每天 09:00、10:45、13:00、15:00 出发，约 90 分钟，只走不跑。
+  - 提前 30 分钟报到并听 30 分钟安全讲解，迟到不能骑也不退款。
+  - 报到时称重，超过 105kg 不能骑。
+  - 骑马时不能背包或斜挎带子，手机放进能扣好的口袋。
+  - 提供防水外套、胶靴和头盔，记得穿袜子。
+  - 河流穿越要看当天天气。
+  - 热门项目，名额紧张，尽早预订。
+  data_notes:
+  - 出发时间来自 Rezdy 预订系统（2026-10-22 查询）。
+  - 2026-10-22 查询 11-23~12-02 大多数场次只剩 0–3 个位置。
+  - 价格 NZ$249 与旧计划一致（儿童 NZ$209）。
+  sources:
+  - https://www.lighthorseadventures.com/treks/
+  - https://lighthorseadventures.rezdy.com/420341/easy-rider
+  - https://www.lighthorseadventures.com/contact/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_high_country_horses
+  name_zh: High Country Horses 格林诺奇骑马
+  name_en: High Country Horses
+  kind: activity
+  region: 南岛
+  city: Glenorchy
+  address: 243 Priory Road, Glenorchy
+  lat: -44.79951
+  lon: 168.37777
+  tags:
+  - horse_riding
+  hours:
+  - season: 各线路出发时段
+    open: '08:30'
+    close: '17:00'
+    last_entry: '14:30'
+  booking:
+    required: true
+    url: https://fareharbor.com/embeds/book/highcountryhorses/?full-items=yes
+    notes: FareHarbor 在线预订。取消：7 天前全额退款；7 天到 24 小时退 50%；24 小时内不退。
+  prices:
+  - label: Mid Rivers Ride（1 小时）
+    money:
+      amount: 180
+      currency: NZD
+      per: person
+  - label: Ride of the Rings（1 小时骑行，电影取景地）
+    money:
+      amount: 279
+      currency: NZD
+      per: person
+  - label: Rees River Trail（约 2 小时）
+    money:
+      amount: 300
+      currency: NZD
+      per: person
+  duration_min: 60
+  duration_max: 150
+  checkin_before_min: 15
+  restrictions:
+  - code: max_weight_kg
+    value: 90
+    text: 官网写 90kg（预订系统写 95kg），按 90kg；报到时可能称重
+  - code: min_age
+    value: 6
+    text: Mid Rivers 6 岁起；Rees River Trail 和 Ride of the Rings 7 岁起；16 岁及以下须家长陪同
+  - code: english_required
+    text: 必须能听懂英语安全指令
+  weather_dependent: true
+  official_url: https://highcountryhorses.nz/
+  intro: 1987 年起在格林诺奇经营的骑马公司，骑行穿过 Rees/Dart 河谷和《指环王》取景地。
+  notes:
+  - Mid Rivers 每天 12:30；Rees River 09:00、14:30；Ride of the Rings 08:30、11:30、14:30。
+  - 提前 15 分钟报到，迟到不等。
+  - Ride of the Rings 从副场地出发，要走碎石路，先确认租车合同允许。
+  - 可能现场称重，体重上限 90kg。
+  - 穿长裤和结实的鞋，带墨镜和防晒。
+  - 热门项目，名额紧张，尽早预订。
+  data_notes:
+  - 出发时间来自官网和 FareHarbor；Rees River Trail 官网写 2 小时，FareHarbor 时段为 2.5 小时；Ride of the Rings 预订系统时段 2 小时。
+  - 体重上限：官网 90kg，预订系统 95kg，取 90kg。
+  - 2026-10-22 查询 11-25、11-29 多数场次余位 0–3 个。
+  - 旧计划未列 High Country Horses 价格。
+  sources:
+  - https://highcountryhorses.nz/
+  - https://highcountryhorses.nz/contact/
+  - https://highcountryhorses.nz/mid-rivers-ride/
+  - https://highcountryhorses.nz/rees-river-trail/
+  - https://highcountryhorses.nz/paradise-cinematic/
+  - https://fareharbor.com/api/v1/companies/highcountryhorses/items/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_glenorchy_wharf
+  name_zh: 格林诺奇码头与红房子
+  name_en: Glenorchy Wharf & Red Shed
+  kind: viewpoint
+  region: 南岛
+  city: Glenorchy
+  address: Glenorchy Waterfront Reserve, Glenorchy
+  lat: -44.85152
+  lon: 168.381522
+  tags:
+  - photo_spot
+  - lakefront
+  always_open: true
+  weather_dependent: false
+  official_url: https://www.queenstownnz.co.nz/stories/post/six-hidden-glenorchy-gems/
+  intro: 格林诺奇湖边的老码头和红色货棚，蒸汽船时代曾算作“火车站”，是格林诺奇最经典的拍照点。
+  notes:
+  - 红房子里有当地历史展板，可以进去看看。
+  - 从码头右转可以沿湖走到 Glenorchy Boardwalk。
+  - 春季步道部分路段泥泞，穿防水的鞋。
+  data_notes:
+  - 步道环线约 60–90 分钟、春季泥泞来自第三方资料（非官方）。
+  sources:
+  - https://www.queenstownnz.co.nz/stories/post/six-hidden-glenorchy-gems/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_bennetts_bluff
+  name_zh: 班尼特崖观景台（Bennett's Bluff）
+  name_en: Bennett's Bluff Lookout
+  kind: viewpoint
+  region: 南岛
+  city: Glenorchy
+  address: Glenorchy–Queenstown Road 路边停车场（距皇后镇约 25 km）
+  lat: -45.02791
+  lon: 168.440927
+  tags:
+  - viewpoint
+  - photo_spot
+  always_open: true
+  weather_dependent: false
+  official_url: https://www.queenstownnz.co.nz/stories/post/scenic-drives-from-queenstown-explore-more-at-your-own-pace/
+  intro: 皇后镇去格林诺奇路上的观景台，可以远眺 Earnslaw 山、瓦卡蒂普湖和格林诺奇方向。
+  notes:
+  - 从路边停车场走一段短步道上到岩石小丘。
+  - 停车位较窄，进出注意来车。
+  data_notes:
+  - 距皇后镇约 25 km（Destination Queenstown）。
+  - city 按路线归到 Glenorchy，实际离格林诺奇约 10–15 分钟车程（第三方资料）。
+  - “停车位较窄、注意来车”来自第三方资料。
+  sources:
+  - https://www.queenstownnz.co.nz/stories/post/scenic-drives-from-queenstown-explore-more-at-your-own-pace/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_queenstown_town_centre
+  name_zh: 皇后镇市中心、湖滨与皇后镇花园
+  name_en: Queenstown town centre, lakefront & Queenstown Gardens
+  kind: town
+  region: 南岛
+  city: Queenstown
+  address: Queenstown Mall / Beach Street 湖滨；皇后镇花园在湖滨东南的半岛上
+  lat: -45.03222
+  lon: 168.66099
+  tags:
+  - town
+  - lakefront
+  - park
+  - food
+  always_open: true
+  weather_dependent: false
+  official_url: https://www.queenstownnz.co.nz/
+  intro: 皇后镇步行街、湖滨和半岛上的皇后镇花园，适合散步、吃饭和看日落。
+  notes:
+  - Skyline 缆车、Hydro Attack 售票亭和 Skytrek 集合点都能从市中心走过去。
+  - 市中心车位紧张，露营车不能停在市中心，大车停 Boundary Street。
+  data_notes:
+  - 露营车违停罚款 NZ$40–60 来自 Skyline 官网 getting-here 页。
+  - 皇后镇花园坐标约 -45.03633, 168.661707（OSM）。
+  - QLDC 花园官网页被反爬虫拦截，开放时间未核实（公共公园，通常不设门）。
+  sources:
+  - https://queenstown.skyline.co.nz/getting-here/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_hooker_valley_track
+  name_zh: 胡克谷步道
+  name_en: Hooker Valley Track (White Horse Hill car park)
+  kind: trailhead
+  region: 南岛
+  city: Aoraki/Mount Cook
+  address: White Horse Hill car park, Hooker Valley Road, Aoraki/Mount Cook
+  lat: -43.71967
+  lon: 170.093068
+  tags:
+  - hiking
+  always_open: true
+  prices:
+  - label: White Horse Hill 停车费（每半小时，20 分钟内免费）
+    money:
+      amount: 2.5
+      currency: NZD
+      per: vehicle
+  - label: White Horse Hill 停车费（每天）
+    money:
+      amount: 25
+      currency: NZD
+      per: vehicle
+  duration_min: 180
+  duration_max: 180
+  restrictions:
+  - code: fitness
+    value: easy_intermediate
+    text: DOC 难度：简单至中等（Easy to intermediate）
+  weather_dependent: true
+  official_url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/hooker-valley-track/
+  intro: 从 White Horse Hill 停车场出发，过三座吊桥走到胡克湖，正对库克山，往返 10 km 约 3 小时。
+  notes:
+  - 往返 10 km、约 3 小时，原路返回。
+  - 到第一座吊桥 15 分钟，到第二座再 30 分钟，到胡克湖再 45 分钟。
+  - 停车费每半小时 NZ$2.50 或每天 NZ$25，停超过 20 分钟要在到达时付费。
+  - 第二座吊桥是新开的，长 189 m，是新西兰最长的吊桥。
+  - 第二座吊桥后约 15 分钟有厕所。
+  - 禁止带狗。
+  - 高山天气变化很快，带好防风防水衣物。
+  data_notes:
+  - 第二座吊桥 2026 年 7 月开通（DOC）。
+  - 走完全程约 3 小时停车费约 NZ$15（按 DOC 费率推算）。
+  sources:
+  - https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/hooker-valley-track/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_alpine_salmon_pukaki
+  name_zh: 库克山高山三文鱼店（普卡基湖）
+  name_en: Mt Cook Alpine Salmon Shop, Lake Pukaki
+  kind: restaurant
+  region: 南岛
+  city: Lake Pukaki
+  address: Lake Pukaki Visitor Centre, State Highway 8（特卡波与特威泽尔之间）
+  lat: -44.19002
+  lon: 170.139975
+  tags:
+  - food
+  - salmon
+  hours:
+  - season: 每日（视天气）
+    open: '09:00'
+    close: '17:00'
+  weather_dependent: true
+  official_url: https://alpinesalmon.co.nz/visit-us/
+  intro: 普卡基湖游客中心里的三文鱼直营店，卖自家养殖的淡水帝王三文鱼，店外就是普卡基湖。
+  notes:
+  - 每天 9:00–17:00，天气不好可能关门。
+  - 圣诞节（12-25）不开门。
+  - 店里电话 03 435 0427。
+  data_notes:
+  - 圣诞/新年期间营业时间官网仍写 TBC（2026-10-22）；11-23~12-02 不受影响。
+  - 菜单和价格未能从官网核实。
+  sources:
+  - https://alpinesalmon.co.nz/visit-us/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_church_good_shepherd
+  name_zh: 好牧羊人教堂
+  name_en: Church of the Good Shepherd, Lake Tekapo
+  kind: attraction
+  region: 南岛
+  city: Lake Tekapo
+  address: Pioneer Drive, Lake Tekapo (Takapō)
+  lat: -44.00334
+  lon: 170.482467
+  tags:
+  - church
+  - photo_spot
+  hours:
+  - season: 夏令时期间（教堂院落）
+    from_md: '09-27'
+    to_md: '04-04'
+    open: '09:00'
+    close: '20:00'
+  - season: 非夏令时（教堂院落）
+    from_md: '04-05'
+    to_md: '09-26'
+    open: '09:00'
+    close: '17:00'
+  prices:
+  - label: 建议捐款（门口刷卡捐款机）
+    money:
+      amount: 5
+      currency: NZD
+      per: person
+  restrictions:
+  - code: other
+    text: 教堂内部开放有限：志愿者可能在 10:00–15:00 值守，但不保证开门
+  - code: other
+    text: 禁止无人机（距特卡波机场 4 km 内）；夜间不得进入围栏内
+  weather_dependent: false
+  official_url: https://www.churchofthegoodshepherd.org.nz/
+  intro: 特卡波湖边的石砌小教堂，祭坛窗外就是湖和雪山，是南岛最有名的拍照点之一。
+  notes:
+  - 院落夏令时期间 9:00–20:00 开放，晚上不能进围栏。
+  - 教堂内部不一定开门，志愿者可能在 10:00–15:00 值守。
+  - 想进教堂可提前一周预约私人导览，$100 起含 2 人，每多 1 人 $20。
+  - 周日 16:00–17:15 礼拜；有婚礼或葬礼时可能临时闭园。
+  - 车停在河对岸村庄一侧（Godley Hotel 旁），走人行桥过去。
+  - 最近的厕所在村庄一侧约 400 m，要 $1 硬币或刷卡。
+  - 禁止放无人机。
+  - 门口可以刷卡捐款，建议 $5。
+  data_notes:
+  - 夏令时起止日期按新西兰规则（9 月最后一个周日至次年 4 月第一个周日）填写，每年略有不同。
+  - 内部开放日：首页写周二至周日，Visit 页写周三至周日。
+  - 婚礼或葬礼闭园最多 2 小时；专业或婚纱拍摄需许可证（30 分钟 $100），周日禁止。
+  sources:
+  - https://www.churchofthegoodshepherd.org.nz/
+  - https://www.churchofthegoodshepherd.org.nz/visit
+  - https://www.churchofthegoodshepherd.org.nz/photography
+  - https://www.churchofthegoodshepherd.org.nz/visit/drone-policy
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_te_waihou_blue_spring
+  name_zh: 蓝泉（Te Waihou 步道）
+  name_en: Te Waihou Walkway / Blue Spring
+  kind: trailhead
+  region: 北岛
+  city: Putaruru
+  address: Leslie Road 停车场（离蓝泉近）/ Whites Road 停车场，Putāruru（SH28 附近）
+  lat: -38.03609
+  lon: 175.835747
+  tags:
+  - hiking
+  - spring
+  always_open: true
+  duration_max: 180
+  restrictions:
+  - code: other
+    text: 步道禁止带狗
+  - code: other
+    text: 蓝泉及附近不鼓励游泳（已破坏河岸植被），Whites Road 一端可以游泳
+  weather_dependent: false
+  official_url: https://www.southwaikato.govt.nz/our-district/sport-and-recreation/parks-and-reserves/te-waihou-walkway-blue-spring
+  intro: 沿 Waihou 河的 4.7 km 步道，终点是水色碧蓝的蓝泉，新西兰约 70% 瓶装水的水源地。
+  notes:
+  - 全长 4.7 km，单程约 1.5 小时，有几段短陡坡。
+  - 蓝泉离 Leslie Road 入口更近。
+  - 步道穿过私人农场：不离开步道，门保持原样，带走垃圾。
+  - 厕所在 Whites Road 停车场、步道中途和蓝泉观景台附近。
+  - 蓝泉附近不要游泳，想游去 Whites Road 那一端。
+  - 禁止带狗，也禁止露营。
+  - 停车很紧张，出发前查议会网站有没有关闭通知。
+  data_notes:
+  - 议会提醒 2026-10-23~10-26 劳动节周末极度拥挤；有议员呼吁暂时关闭蓝泉以解决停车安全问题（1News 2026-10-08）。
+  - 议会页未写开放时间，按全天开放处理；免费。
+  sources:
+  - https://www.southwaikato.govt.nz/our-district/sport-and-recreation/parks-and-reserves/te-waihou-walkway-blue-spring
+  - https://www.1news.co.nz/2026/10/08/calls-for-te-waihou-blue-spring-to-close-over-safety-concerns/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_lake_taupo
+  name_zh: 陶波湖湖滨
+  name_en: Lake Taupō lakefront
+  kind: viewpoint
+  region: 北岛
+  city: Taupo
+  address: Lake Terrace, Taupō
+  lat: -38.69228
+  lon: 176.074159
+  tags:
+  - lake
+  - lakefront
+  - viewpoint
+  always_open: true
+  weather_dependent: false
+  intro: 新西兰最大湖泊陶波湖的镇区湖滨，沿 Lake Terrace 散步看湖。
+  notes:
+  - 胡卡瀑布在镇北约 5 分钟车程，可以顺路去。
+  data_notes:
+  - 湖滨设施和停车信息未能从官网核实（lovetaupo.com 相关页面 404）。
+  - 坐标取自 OSM 的 Lake Terrace。
+  sources:
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_huka_falls
+  name_zh: 胡卡瀑布
+  name_en: Huka Falls
+  kind: attraction
+  region: 北岛
+  city: Taupo
+  address: Huka Falls Road (off SH1), Taupō
+  lat: -38.64875
+  lon: 176.089919
+  tags:
+  - waterfall
+  - short_walk
+  hours:
+  - season: 停车场开放时间
+    open: '08:30'
+    close: '17:30'
+  duration_min: 10
+  weather_dependent: false
+  official_url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/central-north-island/places/taupo-area/things-to-do/huka-falls-lookout-walk/
+  intro: 怀卡托河挤进窄峡谷形成的翻腾蓝白急流，从停车场过桥就能看到。
+  notes:
+  - 停车场过桥后左转就是观景步道，单程约 10 分钟，轮椅可达。
+  - 停车场 17:30–08:30 上锁，被锁在里面要付 NZ$30 才能取车。
+  - 怀卡托河又深又急，不要下水。
+  data_notes:
+  - 观景步道单程 167 m（DOC）。
+  - 第三方资料写夏季停车场开到 18:00，以 DOC 的 17:30 为准。
+  sources:
+  - https://www.doc.govt.nz/parks-and-recreation/places-to-go/central-north-island/places/taupo-area/things-to-do/huka-falls-lookout-walk/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_kaituna_cascades
+  name_zh: Kaituna 激流漂流（7 米瀑布）
+  name_en: Kaituna Cascades – Kaituna River Rafting
+  kind: activity
+  region: 北岛
+  city: Okere Falls
+  address: 18 Okere Falls Road, Okere Falls 3074, Rotorua
+  lat: -38.01538
+  lon: 176.345063
+  tags:
+  - rafting
+  hours:
+  - season: 每日（含夏季加班）
+    open: '08:30'
+    close: '18:30'
+    last_entry: '16:30'
+  booking:
+    required: true
+    url: https://kaitunacascades.co.nz/rafting/kaituna-river-rafting/
+    notes: 官网建议在线预订（FareHarbor）锁定时段，每班名额有限。
+  prices:
+  - label: 成人 13 岁以上（官网标价）
+    money:
+      amount: 135
+      currency: NZD
+      per: person
+  - label: 成人（FareHarbor 结账显示价，似含预订手续费）
+    money:
+      amount: 142.04
+      currency: NZD
+      per: person
+  duration_min: 120
+  duration_max: 120
+  checkin_before_min: 15
+  restrictions:
+  - code: min_age
+    value: 13
+    text: 13 岁以上走全程；10–12 岁从河段中途加入（不下瀑布）
+  - code: max_weight_kg
+    value: 120
+    text: 体重上限 120kg
+  - code: fitness
+    text: 五级急流，不适合年长、体型较大或不习惯在水里的人
+  - code: other
+    text: 孕妇和有心脏病的人不能参加
+  weather_dependent: false
+  official_url: https://kaitunacascades.co.nz/
+  intro: 在 Kaituna 河漂过 14 个急流，冲下 7 米高的 Tutea 瀑布——世界最高的商业漂流瀑布。
+  notes:
+  - 每天 08:30、10:30、12:30、14:30、16:30 出发，提前 15 分钟报到。
+  - 全程约 2 小时，在水上 50–60 分钟。
+  - 带泳衣和毛巾，毛巾也可以租（$5）。
+  - 离罗托鲁瓦约 23 分钟车程，基地免费停车，罗托鲁瓦市区有免费接送。
+  - 结束后可在现场看照片，照片包 $50。
+  - 下雨也照常出发。
+  data_notes:
+  - 官网写 08:30、16:30 为夏季加班；FareHarbor（2026-10-22 查询）显示 11-24、11-28、12-01 五个班次都开，每班 2 小时。
+  - 价格：官网 NZ$135 与旧计划一致；FareHarbor 结账显示 NZ$142.04，疑含约 5% 预订费。
+  - 6 人以上团体价 $115/人（官网）。
+  sources:
+  - https://kaitunacascades.co.nz/
+  - https://kaitunacascades.co.nz/rafting/kaituna-river-rafting/
+  - https://kaitunacascades.co.nz/faqs/
+  - https://fareharbor.com/embeds/book/kaitunacascades/items/260463/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_wai_o_tapu
+  name_zh: 怀奥塔普地热仙境
+  name_en: Wai-O-Tapu Thermal Wonderland
+  kind: attraction
+  region: 北岛
+  city: Rotorua
+  address: 201 Waiotapu Loop Road, RD 3, Rotorua 3073
+  lat: -38.35585
+  lon: 176.367545
+  tags:
+  - geothermal
+  - geyser
+  hours:
+  - season: 每日（圣诞节闭园）
+    open: '08:30'
+    close: '16:30'
+    last_entry: '15:00'
+  booking:
+    required: false
+    url: https://fareharbor.com/embeds/book/waiotapu/items/643668/?full-items=yes&flow=1423732
+    notes: 官网引导到 FareHarbor 在线购票；现场能否买票官网未写明（园区不收现金）。
+  prices:
+  - label: 成人 16 岁以上（FareHarbor 2026-11-27 显示价，可能含预订手续费）
+    money:
+      amount: 51.56
+      currency: NZD
+      per: person
+  duration_min: 60
+  duration_max: 120
+  restrictions:
+  - code: other
+    text: 必须待在护栏内和步道上；禁止吸烟、电子烟和无人机；不能带走石头和沙
+  weather_dependent: false
+  official_url: https://www.waiotapu.co.nz/
+  intro: 罗托鲁瓦以南的彩色地热公园，有香槟池等地热景观，每天 10:15 有 Lady Knox 间歇泉表演。
+  notes:
+  - 每天 8:30–16:30，最后入园 15:00。
+  - Lady Knox 间歇泉每天只有 10:15 一场，9:45 前到。
+  - 间歇泉在主园区外的另一处，看完再开车回游客中心入园。
+  - 全园不收现金，只能刷卡。
+  - 园内和间歇泉处都没有厕所，进园前先上。
+  - 从罗托鲁瓦往南约 27 分钟，从陶波往北约 37 分钟。
+  data_notes:
+  - 价格：官网首页未标价；FareHarbor 显示成人 NZ$51.56（2026-11-27 场次，2026-10-22 查询），高于旧计划 NZ$47，疑含预订费。
+  - 车程：官网距离表写罗托鲁瓦 31 km/27 分钟，路线说明写 27 km/20 分钟；陶波 52 km/37 分钟，另一处写 53 km/40 分钟。
+  - 圣诞节闭园（官网），不在行程窗口内。
+  sources:
+  - https://www.waiotapu.co.nz/
+  - https://www.waiotapu.co.nz/plan-your-visit/
+  - https://fareharbor.com/embeds/book/waiotapu/items/643668/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_hobbiton
+  name_zh: 霍比特人村（Hobbiton 电影片场）
+  name_en: Hobbiton Movie Set
+  kind: attraction
+  region: 北岛
+  city: Matamata
+  address: The Shire's Rest, 501 Buckland Road, Hinuera, Matamata
+  lat: -37.87209
+  lon: 175.683027
+  tags:
+  - film_set
+  - guided_tour
+  hours:
+  - season: Signature Tour 出发时段
+    open: '08:00'
+    close: '20:00'
+    last_entry: '17:30'
+  booking:
+    required: true
+    url: https://www.hobbitontours.com/experiences/hobbiton-movie-set-tour/
+    notes: 片场只能跟导览团参观；官网称出发日期至少提前 10 个月开放预订。
+  prices:
+  - label: Signature Tour 成人（18 岁以上）
+    money:
+      amount: 130
+      currency: NZD
+      per: person
+  - label: Signature Tour 青少年（11–17 岁）
+    money:
+      amount: 65
+      currency: NZD
+      per: person
+  duration_min: 150
+  duration_max: 150
+  checkin_before_min: 20
+  weather_dependent: false
+  official_url: https://www.hobbitontours.com/experiences/hobbiton-movie-set-tour/
+  intro: 《指环王》《霍比特人》的夏尔片场，跟导游参观霍比特洞（含一处室内）和绿龙酒馆，送一杯饮品。
+  notes:
+  - 在 The Shire's Rest 售票处报到，至少提前 20 分钟。
+  - 坐约 10 分钟巴士进片场，全程约 2.5 小时。
+  - 约 08:00–17:30 之间每 10–20 分钟一团。
+  - 热门项目，行程期间几乎满员，必须马上锁定日期。
+  - 0–10 岁免费，但也要出票。
+  - 也可以选从 Matamata 信息中心出发的团，每天一班。
+  data_notes:
+  - close 20:00 为末班 17:30 + 2.5 小时推算；每天首末班不同，部分时段 No Departure。
+  - 2026-10-22 按 2 人查询：11-23、11-24、11-26、11-29 全满；11-25 只剩 17:00；11-27 只剩 16:00（只按 1 人查到）；11-28 只剩 9:30、12:30；11-30 只剩 16:30–16:50；12-01、12-02 有少量空位。
+  - 价格 NZ$130 与旧计划一致。
+  sources:
+  - https://www.hobbitontours.com/experiences/hobbiton-movie-set-tour/
+  - https://bookings.hobbitontours.com/BookingCat/Availability/?Category=EXTSRBR
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_waitomo_glowworm_caves
+  name_zh: 怀托摩萤火虫洞
+  name_en: Waitomo Glowworm Caves
+  kind: attraction
+  region: 北岛
+  city: Waitomo
+  address: 39 Waitomo Village Road, Waitomo Caves
+  lat: -38.26086
+  lon: 175.103542
+  tags:
+  - glowworm
+  - cave
+  - boat
+  hours:
+  - season: 每日
+    open: '09:00'
+    close: '17:00'
+  booking:
+    required: true
+    url: https://www.waitomo.com/glowworms-and-caves/waitomo-glowworm-caves
+    notes: 官网写明 Pre-Booking is Essential，每天多个场次。
+  prices:
+  - label: Waitomo Glowworm Caves 成人
+    money:
+      amount: 85
+      currency: NZD
+      per: person
+  duration_min: 45
+  duration_max: 45
+  checkin_before_min: 30
+  restrictions:
+  - code: no_photo
+    text: 萤火虫洞内禁止拍照和录像（Ruakuri、Aranui 洞可以拍）
+  weather_dependent: false
+  official_url: https://www.waitomo.com/glowworms-and-caves/waitomo-glowworm-caves
+  intro: 坐小船在漆黑的地下河上看满洞顶的萤火虫，新西兰最经典的萤火虫洞。
+  notes:
+  - 必须提前预订，一程约 45 分钟。
+  - 提前 30 分钟报到，迟到票作废要重新买。
+  - 萤火虫洞里禁止拍照和录像。
+  - 游客中心不收现金。
+  - 想多看可买联票：加 Ruakuri 洞 NZ$179 起，加 Aranui 洞 NZ$131 起。
+  data_notes:
+  - 价格 NZ$85 与旧计划一致。
+  - 末班出发时间官网未列出，以预订系统为准。
+  sources:
+  - https://www.waitomo.com/glowworms-and-caves/waitomo-glowworm-caves
+  - https://www.waitomo.com/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001
+- id: nz_viaduct_harbour
+  name_zh: 奥克兰高架桥港（Viaduct Harbour）
+  name_en: Viaduct Harbour, Auckland
+  kind: attraction
+  region: 北岛
+  city: Auckland
+  address: Viaduct Harbour, Auckland CBD
+  lat: -36.8432
+  lon: 174.760683
+  tags:
+  - waterfront
+  - food
+  always_open: true
+  weather_dependent: false
+  official_url: https://www.viaduct.co.nz/
+  intro: 奥克兰市中心的海滨餐饮区，30 多家酒吧餐厅围着游艇码头。
+  notes:
+  - 有 30 多家酒吧和餐厅，适合吃晚饭、看游艇码头。
+  data_notes:
+  - 各店营业时间不同，未逐一核实。
+  sources:
+  - https://www.viaduct.co.nz/
+  - https://nominatim.openstreetmap.org/
+  verified_at: *id001

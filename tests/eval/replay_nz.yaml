@@ -1,0 +1,184 @@
+# 回放测试 T2：按我们规划新西兰行程时的真实顺序，把信息和修改逐条喂给 agent（设计规格附录 A）。
+# 每一步之后检查 expect；every_step 里的检查每一步都要满足。
+# 地点 id 和项目类型（activity_tag）与知识库一致。ItemMatch 的 place_id 匹配事件地点，航班等移动类事件匹配出发地。
+
+id: nz_2026_replay
+title: 新西兰 10 天自驾：从清单到 V8 的多轮修改
+
+intake:
+  destination: NZ
+  regions: [南岛, 北岛]
+  start_date: 2026-11-23
+  end_date: 2026-12-02
+  origin_city: Melbourne
+  party: 4 个朋友，其中一对情侣
+  transport: self_drive
+  room_budget_per_night: {amount: 800, currency: CNY}
+  accommodation_type: whole_home
+  room_requirements: 首选 3 间卧室：情侣一间，两位男生各一间；备选 2 间卧室，但男生必须分床
+  need_parking: true
+  existing_bookings:
+    - {kind: flight, description: "QF177 墨尔本 → 皇后镇，11/23 06:40–11:45"}
+  members:
+    - name: Nina
+      passport_country: CN
+      visa: 澳洲 500 学生签
+      large_luggage: 1
+      must_do:
+        - {what: 滑翔伞, activity_tag: paragliding}
+        - {what: 鲨鱼艇, activity_tag: shark_boat}
+        - {what: 米尔福德峡湾, activity_tag: cruise, place_hint: 米尔福德峡湾, fixed_place: true}
+        - {what: 实弹射击, activity_tag: shooting}
+        - {what: 骑马, activity_tag: horse_riding}
+        - {what: 白水漂流, activity_tag: rafting}
+        - {what: 霍比屯, activity_tag: film_set, place_hint: 霍比屯, fixed_place: true}
+    - {name: Leo, passport_country: CN, visa: 澳洲 500 学生签, can_drive: true, age: 26, licence_country: AU, licence_type: full, large_luggage: 1}
+    - {name: Tony, passport_country: CN, visa: 澳洲 500 学生签, can_drive: true, age: 24, licence_country: CN, licence_type: full, large_luggage: 1}
+    - {name: 天哥, passport_country: CN, visa: 澳洲 500 学生签, large_luggage: 1}
+
+every_step:
+  - validator_no_errors               # 交付的行程没有错误级问题
+  - no_locked_change_without_consent  # 锁定项没有在未确认的情况下被改动
+  - active_decisions_respected        # 不违背任何生效中的决策，不推荐被否决的方案
+  - report_values_consistent          # 报告各章节里同一事件的时间、价格一致
+
+steps:
+  - step: 1
+    note: 初始清单 → 首次生成
+    input: {kind: message, member: Nina, text: 帮我们规划新西兰南北岛自驾，信息都在清单里了}
+    expect:
+      - {check: todo, kind: visa, title_contains: [NZeTA]}
+      - {check: todo, kind: visa, title_contains: [NZTD]}
+      - {check: todo, kind: licence_translation, owner: Tony}
+      - {check: answer_mentions, all_of: [皇后镇, 奥克兰]}
+
+  - step: 2
+    note: 滑翔伞已订，只有两个人
+    input:
+      kind: upload
+      member: Nina
+      evidence_kind: activity
+      description: Skytrek 滑翔伞确认邮件
+      fields: {operator: Skytrek, date: 2026-11-24, time: "09:00", checkin: "08:30", pax: 2, participants: [Nina, Leo]}
+    expect:
+      - {check: item, match: {place_id: nz_skytrek_paragliding, date: 2026-11-24}, start: "09:00", locked: true}
+
+  - step: 3
+    note: 鲨鱼艇一艇 2 人，订了两场
+    input:
+      kind: upload
+      member: Nina
+      evidence_kind: activity
+      description: Hydro Attack 两张确认单
+      fields: {operator: Hydro Attack, date: 2026-11-24, sessions: ["12:10", "13:50"], pax_per_session: 2}
+    expect:
+      - {check: item, match: {place_id: nz_hydro_attack, date: 2026-11-24}, start: "12:10", locked: true}
+      - {check: item, match: {place_id: nz_hydro_attack, date: 2026-11-24}, start: "13:50", locked: true}
+
+  - step: 4
+    note: 发现打枪约在 11/26，已付款
+    input:
+      kind: upload
+      member: Leo
+      evidence_kind: activity
+      description: Real Guns 付款确认
+      fields: {operator: Real Guns, date: 2026-11-26, time: "12:00", checkin: "11:45", pax: 4}
+    expect:
+      - {check: item, match: {place_id: nz_real_guns, date: 2026-11-26}, start: "12:00", locked: true}
+
+  - step: 5
+    note: 骑马地点是硬约束，Cardrona 方案被否决
+    input: {kind: message, member: Nina, text: 一定要在格林诺奇骑马}
+    expect:
+      - check: decision
+        kind: hard_constraint
+        requirement: {activity_tag: horse_riding, city: Glenorchy}
+      - {check: no_item, match: {activity_tag: horse_riding, city: Cardrona}}
+      - {check: item, match: {activity_tag: horse_riding, city: Glenorchy}}
+
+  - step: 6
+    note: 峡湾改自驾
+    input: {kind: message, member: Nina, text: 米尔福德峡湾我们还是想自驾，那一天有什么变化？}
+    expect:
+      - {check: decision, kind: decision, supersedes_about: 巴士}
+      - {check: only_days_changed, dates: [2026-11-25]}
+      - {check: answer_mentions, all_of: [Te Anau, 加油]}
+
+  - step: 7
+    note: 跨岛机票和回程机票定了
+    input:
+      kind: upload
+      member: Leo
+      evidence_kind: flight
+      description: JQ270 和 QF206 行程单
+      fields:
+        flights:
+          - {number: JQ270, from: CHC, to: HLZ, date: 2026-11-29, depart: "07:15", arrive: "08:30"}
+          - {number: QF206, from: AKL, to: MEL, date: 2026-12-02, depart: "19:05", arrive: "21:15"}
+    expect:
+      - {check: item, match: {place_id: nz_chc_airport, date: 2026-11-29}, start: "07:15", locked: true}
+      - {check: item, match: {place_id: nz_akl_airport, date: 2026-12-02}, start: "19:05", locked: true}
+
+  - step: 8
+    note: 5 处住宿全部订好，基督城缺门牌号
+    input:
+      kind: upload
+      member: Nina
+      evidence_kind: accommodation
+      description: 5 张 Airbnb 确认截图
+      fields:
+        stays:
+          - {city: Queenstown, name: "Jack's Point 湖景屋", address: "1 Example Road, Jacks Point", check_in: 2026-11-23, check_out: 2026-11-27}
+          - {city: Twizel, name: 山景度假屋, address: "2 Example Road, Twizel", check_in: 2026-11-27, check_out: 2026-11-28}
+          - {city: Christchurch, name: 三卧室家庭住宅, address: null, check_in: 2026-11-28, check_out: 2026-11-29}
+          - {city: Rotorua, name: Lakeside Inn, address: "3 Example Road, Rotorua", check_in: 2026-11-29, check_out: 2026-12-01}
+          - {city: Auckland, name: Flat Bush 三卧室民宿, address: "4 Example Road, Flat Bush, Auckland", check_in: 2026-12-01, check_out: 2026-12-02}
+    expect:
+      - {check: todo, kind: confirm, title_contains: [基督城, 门牌号]}
+
+  - step: 9
+    note: 删除萤火虫洞
+    input: {kind: message, member: Nina, text: 11/29 不去萤火虫洞了，改去蓝泉、陶波湖、胡卡瀑布}
+    expect:
+      - check: decision
+        kind: decision
+        rejected: {description: 怀托摩萤火虫洞, place_id: nz_waitomo_glowworm_caves}
+      - {check: no_item, match: {place_id: nz_waitomo_glowworm_caves}}
+      - {check: item, match: {place_id: nz_te_waihou_blue_spring, date: 2026-11-29}}
+      - {check: item, match: {place_id: nz_huka_falls, date: 2026-11-29}}
+      - {check: only_days_changed, dates: [2026-11-29]}
+
+  - step: 10
+    note: 游船凭证显示 13:15，和原计划 13:55 不一致
+    input:
+      kind: upload
+      member: Nina
+      evidence_kind: activity
+      description: 11.25 米尔福德峡湾游船凭证.pdf
+      fields: {operator: RealNZ, product: Milford Sound Classic Cruise, date: 2026-11-25, time: "13:15", checkin: "12:55", pax: 4}
+    expect:
+      - {check: item, match: {place_id: nz_milford_sound_terminal, date: 2026-11-25}, start: "13:15", locked: true, booking_status: booked}
+      - {check: consistent_everywhere, item: {place_id: nz_milford_sound_terminal}, value: "13:15", forbidden: ["13:55"]}
+
+  - step: 11
+    note: 骑马凭证
+    input:
+      kind: upload
+      member: Tony
+      evidence_kind: activity
+      description: Lighthorse Easy Rider 确认
+      fields: {operator: Lighthorse Adventures, product: Easy Rider, date: 2026-11-27, time: "09:00", checkin: "08:30", pax: 4}
+    expect:
+      - {check: item, match: {place_id: nz_lighthorse_glenorchy, date: 2026-11-27}, start: "09:00", locked: true}
+      - {check: warning, code: R05}
+
+  - step: 12
+    note: 查询待订项目
+    input: {kind: message, member: 天哥, text: 还有什么没订？}
+    expect:
+      - {check: answer_mentions, all_of: [小鹿公园, 白水漂流, Wai-O-Tapu, 霍比屯, Skyline], none_of: [萤火虫, "13:55"]}
+
+  - step: 13
+    note: 记账（第 3 阶段补充账目检查）
+    input: {kind: message, member: Nina, text: 皇后镇民宿是 Leo 付的，南岛租车 Tony 付的，滑翔伞是我付的}
+    expect: []

@@ -1,0 +1,24 @@
+# 不放进镜像的东西：个人资料、密钥、本地数据、依赖和构建产物（镜像里会重新安装和构建）
+.git
+.claude
+**/.env
+**/.env.*
+!**/.env.example
+**/node_modules
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/*.egg-info
+apps/web/.next
+apps/web/.next-*
+apps/web/tsconfig.tsbuildinfo
+services/api/data
+services/api/tests
+output
+凭证例子
+案例V1-V4
+*.pdf
+tests
+docs
+packages

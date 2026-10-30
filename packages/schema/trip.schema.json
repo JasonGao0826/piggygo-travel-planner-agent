@@ -1,0 +1,1019 @@
+{
+  "$defs": {
+    "Accommodation": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "city": {
+          "title": "City",
+          "type": "string"
+        },
+        "place_id": {
+          "title": "Place Id",
+          "type": "string"
+        },
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "check_in": {
+          "format": "date",
+          "title": "Check In",
+          "type": "string"
+        },
+        "check_out": {
+          "format": "date",
+          "title": "Check Out",
+          "type": "string"
+        },
+        "earliest_checkin": {
+          "anyOf": [
+            {
+              "format": "time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Earliest Checkin"
+        },
+        "latest_checkout": {
+          "anyOf": [
+            {
+              "format": "time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Checkout"
+        },
+        "rooms": {
+          "default": "",
+          "title": "Rooms",
+          "type": "string"
+        },
+        "host": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Host"
+        },
+        "booking_status": {
+          "$ref": "#/$defs/BookingStatus",
+          "default": "to_book"
+        },
+        "locked": {
+          "default": false,
+          "title": "Locked",
+          "type": "boolean"
+        },
+        "lock_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LockReason"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "source": {
+          "$ref": "#/$defs/Source",
+          "default": "agent_inferred"
+        },
+        "cost": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Money"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "city",
+        "place_id",
+        "check_in",
+        "check_out"
+      ],
+      "title": "Accommodation",
+      "type": "object"
+    },
+    "BookingStatus": {
+      "enum": [
+        "not_required",
+        "to_book",
+        "booked",
+        "cancelled"
+      ],
+      "title": "BookingStatus",
+      "type": "string"
+    },
+    "Day": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date",
+          "title": "Date",
+          "type": "string"
+        },
+        "segment_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Segment Id"
+        },
+        "night_city": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Night City"
+        },
+        "route": {
+          "default": "",
+          "title": "Route",
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/Item"
+          },
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "date"
+      ],
+      "title": "Day",
+      "type": "object"
+    },
+    "FlightInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "number": {
+          "title": "Number",
+          "type": "string"
+        },
+        "international": {
+          "default": false,
+          "title": "International",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "number"
+      ],
+      "title": "FlightInfo",
+      "type": "object"
+    },
+    "Item": {
+      "additionalProperties": false,
+      "description": "行程中的一个事件。移动类事件（航班、开车、接驳）用 from/to 表示起止地点，其他事件用 place_id。",
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/ItemType"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "place_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Place Id"
+        },
+        "from_place_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From Place Id"
+        },
+        "to_place_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Place Id"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "checkin_before_min": {
+          "default": 0,
+          "title": "Checkin Before Min",
+          "type": "integer"
+        },
+        "participants": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Participants"
+        },
+        "driver_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Driver Id"
+        },
+        "vehicle_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vehicle Id"
+        },
+        "accommodation_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Accommodation Id"
+        },
+        "flight": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FlightInfo"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "booking_status": {
+          "$ref": "#/$defs/BookingStatus",
+          "default": "not_required"
+        },
+        "locked": {
+          "default": false,
+          "title": "Locked",
+          "type": "boolean"
+        },
+        "lock_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LockReason"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "decision_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Decision Ids",
+          "type": "array"
+        },
+        "source": {
+          "$ref": "#/$defs/Source",
+          "default": "agent_inferred"
+        },
+        "cost": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Money"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "weather_dependent": {
+          "default": false,
+          "title": "Weather Dependent",
+          "type": "boolean"
+        },
+        "backup": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Backup"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "start",
+        "end"
+      ],
+      "title": "Item",
+      "type": "object"
+    },
+    "ItemType": {
+      "enum": [
+        "flight",
+        "drive",
+        "transfer",
+        "activity",
+        "meal",
+        "checkin",
+        "checkout",
+        "car_pickup",
+        "car_dropoff",
+        "free_time",
+        "buffer"
+      ],
+      "title": "ItemType",
+      "type": "string"
+    },
+    "LockReason": {
+      "enum": [
+        "evidence",
+        "user"
+      ],
+      "title": "LockReason",
+      "type": "string"
+    },
+    "Member": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "role": {
+          "default": "member",
+          "enum": [
+            "owner",
+            "editor",
+            "member"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "passport_country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Passport Country"
+        },
+        "visa": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Visa"
+        },
+        "can_drive": {
+          "default": false,
+          "title": "Can Drive",
+          "type": "boolean"
+        },
+        "age": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Age"
+        },
+        "licence_country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Licence Country"
+        },
+        "licence_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Licence Type"
+        },
+        "weight_kg": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Weight Kg"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "Member",
+      "type": "object"
+    },
+    "Money": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Amount"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "title": "Currency",
+          "type": "string"
+        },
+        "per": {
+          "default": "person",
+          "enum": [
+            "person",
+            "group",
+            "vehicle"
+          ],
+          "title": "Per",
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "title": "Money",
+      "type": "object"
+    },
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "transport": {
+          "enum": [
+            "self_drive",
+            "public",
+            "tour",
+            "mixed"
+          ],
+          "title": "Transport",
+          "type": "string"
+        },
+        "start_date": {
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        },
+        "end_date": {
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        },
+        "vehicle_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vehicle Id"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "transport",
+        "start_date",
+        "end_date"
+      ],
+      "title": "Segment",
+      "type": "object"
+    },
+    "Source": {
+      "description": "信息来源（设计规格 8.5 节：每条信息都标来源）。",
+      "enum": [
+        "user",
+        "evidence",
+        "verified_web",
+        "knowledge_base",
+        "guide",
+        "agent_inferred"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "Todo": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/TodoKind",
+          "default": "other"
+        },
+        "owner_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owner Ids",
+          "type": "array"
+        },
+        "due": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Due"
+        },
+        "status": {
+          "default": "open",
+          "enum": [
+            "open",
+            "done"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "item_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Item Ids",
+          "type": "array"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
+      "title": "Todo",
+      "type": "object"
+    },
+    "TodoKind": {
+      "enum": [
+        "booking",
+        "visa",
+        "licence_translation",
+        "payment",
+        "confirm",
+        "other"
+      ],
+      "title": "TodoKind",
+      "type": "string"
+    },
+    "TripMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "destination": {
+          "title": "Destination",
+          "type": "string"
+        },
+        "start_date": {
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        },
+        "end_date": {
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        },
+        "origin_city": {
+          "title": "Origin City",
+          "type": "string"
+        },
+        "home_timezone": {
+          "default": "Australia/Melbourne",
+          "title": "Home Timezone",
+          "type": "string"
+        },
+        "local_timezone": {
+          "default": "Pacific/Auckland",
+          "title": "Local Timezone",
+          "type": "string"
+        },
+        "local_currency": {
+          "default": "NZD",
+          "title": "Local Currency",
+          "type": "string"
+        },
+        "settle_currency": {
+          "default": "AUD",
+          "title": "Settle Currency",
+          "type": "string"
+        },
+        "prefs": {
+          "$ref": "#/$defs/TripPrefs"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "destination",
+        "start_date",
+        "end_date",
+        "origin_city"
+      ],
+      "title": "TripMeta",
+      "type": "object"
+    },
+    "TripPrefs": {
+      "additionalProperties": false,
+      "properties": {
+        "max_daily_drive_hours": {
+          "default": 5.0,
+          "title": "Max Daily Drive Hours",
+          "type": "number"
+        },
+        "earliest_departure": {
+          "default": "07:00:00",
+          "format": "time",
+          "title": "Earliest Departure",
+          "type": "string"
+        }
+      },
+      "title": "TripPrefs",
+      "type": "object"
+    },
+    "Vehicle": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "pickup_place_id": {
+          "title": "Pickup Place Id",
+          "type": "string"
+        },
+        "pickup_time": {
+          "format": "date-time",
+          "title": "Pickup Time",
+          "type": "string"
+        },
+        "dropoff_place_id": {
+          "title": "Dropoff Place Id",
+          "type": "string"
+        },
+        "dropoff_time": {
+          "format": "date-time",
+          "title": "Dropoff Time",
+          "type": "string"
+        },
+        "drivers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Drivers",
+          "type": "array"
+        },
+        "booking_status": {
+          "$ref": "#/$defs/BookingStatus",
+          "default": "to_book"
+        },
+        "locked": {
+          "default": false,
+          "title": "Locked",
+          "type": "boolean"
+        },
+        "lock_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LockReason"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "cost": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Money"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "pickup_place_id",
+        "pickup_time",
+        "dropoff_place_id",
+        "dropoff_time"
+      ],
+      "title": "Vehicle",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/TripMeta"
+    },
+    "members": {
+      "items": {
+        "$ref": "#/$defs/Member"
+      },
+      "title": "Members",
+      "type": "array"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/Segment"
+      },
+      "title": "Segments",
+      "type": "array"
+    },
+    "days": {
+      "items": {
+        "$ref": "#/$defs/Day"
+      },
+      "title": "Days",
+      "type": "array"
+    },
+    "accommodations": {
+      "items": {
+        "$ref": "#/$defs/Accommodation"
+      },
+      "title": "Accommodations",
+      "type": "array"
+    },
+    "vehicles": {
+      "items": {
+        "$ref": "#/$defs/Vehicle"
+      },
+      "title": "Vehicles",
+      "type": "array"
+    },
+    "todos": {
+      "items": {
+        "$ref": "#/$defs/Todo"
+      },
+      "title": "Todos",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "version": {
+      "default": 1,
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "meta",
+    "members"
+  ],
+  "title": "Trip",
+  "type": "object"
+}

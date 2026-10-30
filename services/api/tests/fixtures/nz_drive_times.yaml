@@ -1,0 +1,61 @@
+# 测试用静态车程表：纯驾驶分钟数（未乘修正系数），两个方向通用。
+# 数值为按地图估算的近似值，只用于测试；正式环境由 Google Routes API 计算。
+# road: mountain 表示山路或景观路（Crown Range、Milford Road 等），修正系数更大。
+
+drives:
+  # 皇后镇一带
+  - {from: nz_zqn_airport, to: nz_queenstown_town_centre, minutes: 15}
+  - {from: nz_zqn_airport, to: acc_queenstown_jacks_point, minutes: 15}
+  - {from: nz_queenstown_town_centre, to: nz_skyline_queenstown, minutes: 5}
+  - {from: nz_queenstown_town_centre, to: acc_queenstown_jacks_point, minutes: 25}
+  - {from: nz_skyline_queenstown, to: acc_queenstown_jacks_point, minutes: 25}
+  - {from: acc_queenstown_jacks_point, to: nz_skytrek_paragliding, minutes: 40, road: mountain}
+  - {from: nz_skytrek_paragliding, to: nz_queenstown_town_centre, minutes: 25, road: mountain}
+  - {from: nz_skytrek_paragliding, to: nz_hydro_attack, minutes: 25, road: mountain}
+  - {from: nz_hydro_attack, to: nz_queenstown_town_centre, minutes: 3}
+  - {from: nz_hydro_attack, to: nz_deer_park_heights, minutes: 15}
+  - {from: nz_queenstown_town_centre, to: nz_deer_park_heights, minutes: 15}
+  - {from: nz_deer_park_heights, to: acc_queenstown_jacks_point, minutes: 20}
+
+  # 米尔福德峡湾
+  - {from: acc_queenstown_jacks_point, to: nz_te_anau_town, minutes: 105}
+  - {from: nz_te_anau_town, to: nz_mirror_lakes, minutes: 45}
+  - {from: nz_mirror_lakes, to: nz_milford_sound_terminal, minutes: 75, road: mountain}
+  - {from: nz_te_anau_town, to: nz_milford_sound_terminal, minutes: 120, road: mountain}
+
+  # 卡德罗纳、瓦纳卡
+  - {from: acc_queenstown_jacks_point, to: nz_real_guns, minutes: 65, road: mountain}
+  - {from: acc_queenstown_jacks_point, to: nz_cardrona_horse_riding, minutes: 55, road: mountain}
+  - {from: nz_cardrona_horse_riding, to: nz_real_guns, minutes: 20}
+  - {from: nz_real_guns, to: nz_wanaka_town, minutes: 25}
+  - {from: nz_wanaka_town, to: nz_wanaka_tree, minutes: 5}
+  - {from: nz_wanaka_tree, to: acc_queenstown_jacks_point, minutes: 80, road: mountain}
+
+  # 格林诺奇 → 特威泽尔
+  - {from: acc_queenstown_jacks_point, to: nz_lighthorse_glenorchy, minutes: 65, road: mountain}
+  - {from: acc_queenstown_jacks_point, to: nz_high_country_horses, minutes: 65, road: mountain}
+  - {from: nz_lighthorse_glenorchy, to: nz_glenorchy_wharf, minutes: 5}
+  - {from: nz_glenorchy_wharf, to: nz_cromwell_town, minutes: 105}
+  - {from: nz_cromwell_town, to: acc_twizel_house, minutes: 110, road: mountain}
+
+  # 库克山 → 基督城
+  - {from: acc_twizel_house, to: nz_hooker_valley_track, minutes: 60}
+  - {from: nz_hooker_valley_track, to: nz_alpine_salmon_pukaki, minutes: 50}
+  - {from: nz_alpine_salmon_pukaki, to: nz_church_good_shepherd, minutes: 40}
+  - {from: nz_church_good_shepherd, to: acc_christchurch_house, minutes: 180}
+  - {from: acc_christchurch_house, to: nz_chc_airport, minutes: 15}
+
+  # 北岛
+  - {from: nz_hlz_airport, to: nz_te_waihou_blue_spring, minutes: 45}
+  - {from: nz_hlz_airport, to: nz_waitomo_glowworm_caves, minutes: 60}
+  - {from: nz_te_waihou_blue_spring, to: nz_lake_taupo, minutes: 75}
+  - {from: nz_lake_taupo, to: nz_huka_falls, minutes: 10}
+  - {from: nz_huka_falls, to: acc_rotorua_inn, minutes: 65}
+  - {from: acc_rotorua_inn, to: nz_kaituna_cascades, minutes: 20}
+  - {from: nz_kaituna_cascades, to: nz_wai_o_tapu, minutes: 40}
+  - {from: nz_wai_o_tapu, to: acc_rotorua_inn, minutes: 30}
+  - {from: acc_rotorua_inn, to: nz_hobbiton, minutes: 60}
+  - {from: nz_hobbiton, to: acc_auckland_flat_bush, minutes: 125}
+  - {from: acc_auckland_flat_bush, to: nz_viaduct_harbour, minutes: 30}
+  - {from: nz_viaduct_harbour, to: nz_akl_airport, minutes: 35}
+  - {from: acc_auckland_flat_bush, to: nz_akl_airport, minutes: 20}

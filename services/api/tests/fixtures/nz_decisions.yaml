@@ -1,0 +1,41 @@
+# 示例行程的决策账本。
+
+decisions:
+  - id: D-001
+    content: 骑马必须在格林诺奇
+    kind: hard_constraint
+    priority: must
+    requirement: {activity_tag: horse_riding, city: Glenorchy}
+    rejected_options:
+      - {description: Cardrona 骑马（会和 11/26 打枪签到冲突）, activity_tag: horse_riding, city: Cardrona}
+    rationale: 用户明确要求；Cardrona 骑马 11:30 结束，离 Real Guns 11:45 签到只有 15 分钟
+
+  - id: D-002
+    content: 米尔福德峡湾坐旅游巴士往返
+    kind: decision
+    status: superseded
+
+  - id: D-003
+    content: 米尔福德峡湾改为自驾，不坐旅游巴士
+    kind: decision
+    priority: high
+    supersedes: D-002
+
+  - id: D-004
+    content: 11/29 不去萤火虫洞，改去蓝泉、陶波湖、胡卡瀑布
+    kind: decision
+    priority: high
+    rejected_options:
+      - {description: 怀托摩萤火虫洞, place_id: nz_waitomo_glowworm_caves}
+
+  - {id: D-010, content: 必玩：滑翔伞, kind: hard_constraint, priority: must, requirement: {activity_tag: paragliding}}
+  - {id: D-011, content: 必玩：鲨鱼艇, kind: hard_constraint, priority: must, requirement: {activity_tag: shark_boat}}
+  - {id: D-012, content: 必玩：米尔福德峡湾游船, kind: hard_constraint, priority: must, requirement: {place_id: nz_milford_sound_terminal}}
+  - {id: D-013, content: 必玩：实弹射击（11/26 已付款）, kind: hard_constraint, priority: must, requirement: {activity_tag: shooting, date: 2026-11-26}}
+  - {id: D-014, content: 必玩：白水漂流, kind: hard_constraint, priority: must, requirement: {activity_tag: rafting}}
+  - {id: D-015, content: 必玩：霍比屯, kind: hard_constraint, priority: must, requirement: {place_id: nz_hobbiton}}
+
+  - id: D-020
+    content: 住宿首选 3 间卧室：情侣一间，两位男生各一间；备选 2 间卧室，但男生必须分床
+    kind: preference
+    priority: high

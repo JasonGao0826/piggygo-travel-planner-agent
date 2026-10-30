@@ -1,0 +1,388 @@
+{
+  "$defs": {
+    "AddOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "add",
+          "title": "Op",
+          "type": "string"
+        },
+        "collection": {
+          "enum": [
+            "items",
+            "accommodations",
+            "vehicles",
+            "todos"
+          ],
+          "title": "Collection",
+          "type": "string"
+        },
+        "value": {
+          "additionalProperties": true,
+          "title": "Value",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "collection",
+        "value"
+      ],
+      "title": "AddOp",
+      "type": "object"
+    },
+    "Change": {
+      "additionalProperties": false,
+      "description": "一条可读的差异，用于给用户确认和写版本说明。",
+      "properties": {
+        "collection": {
+          "title": "Collection",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "added",
+            "removed",
+            "changed"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/FieldChange"
+          },
+          "title": "Fields",
+          "type": "array"
+        }
+      },
+      "required": [
+        "collection",
+        "id",
+        "kind"
+      ],
+      "title": "Change",
+      "type": "object"
+    },
+    "FieldChange": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "old": {
+          "default": null,
+          "title": "Old"
+        },
+        "new": {
+          "default": null,
+          "title": "New"
+        }
+      },
+      "required": [
+        "field"
+      ],
+      "title": "FieldChange",
+      "type": "object"
+    },
+    "Issue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "item_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Item Ids",
+          "type": "array"
+        },
+        "suggestions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Suggestions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Issue",
+      "type": "object"
+    },
+    "PatchStatus": {
+      "enum": [
+        "proposed",
+        "applied",
+        "rejected",
+        "conflict"
+      ],
+      "title": "PatchStatus",
+      "type": "string"
+    },
+    "RemoveOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "remove",
+          "title": "Op",
+          "type": "string"
+        },
+        "collection": {
+          "enum": [
+            "items",
+            "accommodations",
+            "vehicles",
+            "todos"
+          ],
+          "title": "Collection",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "collection",
+        "id"
+      ],
+      "title": "RemoveOp",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "error",
+        "warning"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "UpdateDayOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "update_day",
+          "title": "Op",
+          "type": "string"
+        },
+        "date": {
+          "format": "date",
+          "title": "Date",
+          "type": "string"
+        },
+        "set": {
+          "additionalProperties": true,
+          "title": "Set",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "date",
+        "set"
+      ],
+      "title": "UpdateDayOp",
+      "type": "object"
+    },
+    "UpdateMetaOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "update_meta",
+          "title": "Op",
+          "type": "string"
+        },
+        "set": {
+          "additionalProperties": true,
+          "title": "Set",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "set"
+      ],
+      "title": "UpdateMetaOp",
+      "type": "object"
+    },
+    "UpdateOp": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "update",
+          "title": "Op",
+          "type": "string"
+        },
+        "collection": {
+          "enum": [
+            "items",
+            "accommodations",
+            "vehicles",
+            "todos"
+          ],
+          "title": "Collection",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "set": {
+          "additionalProperties": true,
+          "title": "Set",
+          "type": "object"
+        }
+      },
+      "required": [
+        "op",
+        "collection",
+        "id",
+        "set"
+      ],
+      "title": "UpdateOp",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "trip_id": {
+      "title": "Trip Id",
+      "type": "string"
+    },
+    "base_version": {
+      "title": "Base Version",
+      "type": "integer"
+    },
+    "ops": {
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "add": "#/$defs/AddOp",
+            "remove": "#/$defs/RemoveOp",
+            "update": "#/$defs/UpdateOp",
+            "update_day": "#/$defs/UpdateDayOp",
+            "update_meta": "#/$defs/UpdateMetaOp"
+          },
+          "propertyName": "op"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/AddOp"
+          },
+          {
+            "$ref": "#/$defs/UpdateOp"
+          },
+          {
+            "$ref": "#/$defs/RemoveOp"
+          },
+          {
+            "$ref": "#/$defs/UpdateDayOp"
+          },
+          {
+            "$ref": "#/$defs/UpdateMetaOp"
+          }
+        ]
+      },
+      "title": "Ops",
+      "type": "array"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "reason": {
+      "default": "",
+      "title": "Reason",
+      "type": "string"
+    },
+    "author": {
+      "default": "agent",
+      "title": "Author",
+      "type": "string"
+    },
+    "decision_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Decision Ids",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "unlock_item_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unlock Item Ids",
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/$defs/PatchStatus",
+      "default": "proposed"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/Issue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "changes": {
+      "items": {
+        "$ref": "#/$defs/Change"
+      },
+      "title": "Changes",
+      "type": "array"
+    },
+    "confirmed_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Confirmed By"
+    }
+  },
+  "required": [
+    "id",
+    "trip_id",
+    "base_version",
+    "ops",
+    "summary"
+  ],
+  "title": "Patch",
+  "type": "object"
+}
